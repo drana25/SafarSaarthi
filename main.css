@@ -1,0 +1,1062 @@
+/**
+ * Verida — Core Design System & Base CSS
+ */
+
+:root {
+  /* Color Palette - Emerald Trust & Deep Slate */
+  --primary: #059669;
+  --primary-hover: #047857;
+  --primary-light: #d1fae5;
+  --primary-surface: #ecfdf5;
+  --primary-text: #065f46;
+  
+  --secondary: #2563eb;
+  --secondary-light: #dbeafe;
+  
+  --accent: #f59e0b;
+  --accent-light: #fef3c7;
+  --danger: #ef4444;
+  --danger-light: #fee2e2;
+  --danger-dark: #991b1b;
+  
+  --slate-900: #0f172a;
+  --slate-800: #1e293b;
+  --slate-700: #334155;
+  --slate-600: #475569;
+  --slate-500: #64748b;
+  --slate-400: #94a3b8;
+  --slate-300: #cbd5e1;
+  --slate-200: #e2e8f0;
+  --slate-100: #f1f5f9;
+  --slate-50: #f8fafc;
+  
+  --surface: #ffffff;
+  --surface-glass: rgba(255, 255, 255, 0.94);
+  
+  /* Typography */
+  --font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  
+  /* Shadows & Elevations */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  --shadow-glow: 0 0 20px rgba(5, 150, 105, 0.25);
+  
+  /* Radii */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+  
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: #f1f5f9;
+  color: var(--slate-800);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Presenter Stage Demo Top Bar */
+.stage-control-bar {
+  background: var(--slate-900);
+  color: #fff;
+  padding: 8px 16px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  border-bottom: 1px solid var(--slate-700);
+  z-index: 1000;
+  position: sticky;
+  top: 0;
+}
+
+.stage-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.stage-logo-badge {
+  background: var(--primary);
+  color: #fff;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.5px;
+  font-size: 13px;
+}
+
+.stage-bar-right {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.stage-select {
+  background: var(--slate-800);
+  color: #fff;
+  border: 1px solid var(--slate-600);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-family: inherit;
+  cursor: pointer;
+  outline: none;
+}
+
+.btn-stage {
+  background: var(--slate-800);
+  color: #f1f5f9;
+  border: 1px solid var(--slate-600);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-family: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: var(--transition-fast);
+}
+
+.btn-stage:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+/* ==========================================================================
+   FLUID & RESPONSIVE APP SHELL (Adapts to Mobile & Laptop)
+   ========================================================================== */
+.app-viewport-wrapper {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  background: var(--surface);
+  height: 100vh;
+  height: 100dvh;
+  max-height: 100dvh;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border: none;
+}
+
+/* App Header */
+.app-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--slate-200);
+  padding: 10px 14px;
+  flex-shrink: 0;
+}
+
+.header-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.brand-identity {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.brand-logo-full {
+  height: 38px;
+  width: auto;
+  max-width: 180px;
+  object-fit: contain;
+  display: block;
+}
+
+.brand-icon {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 18px;
+  box-shadow: var(--shadow-sm);
+}
+
+.brand-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--slate-900);
+  letter-spacing: -0.5px;
+}
+
+.brand-tagline {
+  font-size: 11px;
+  color: var(--slate-500);
+  font-weight: 500;
+  display: block;
+}
+
+.city-select-box select {
+  background: var(--slate-100);
+  border: 1px solid var(--slate-300);
+  padding: 7px 14px;
+  border-radius: var(--radius-full);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--slate-800);
+  outline: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* Role Toggle Bar */
+.role-toggle-container {
+  display: flex;
+  background: var(--slate-100);
+  border-radius: var(--radius-lg);
+  padding: 4px;
+  margin-bottom: 8px;
+  max-width: 480px;
+}
+
+.role-toggle-btn {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--slate-600);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: inherit;
+  transition: var(--transition-fast);
+}
+
+.role-toggle-btn.active {
+  background: var(--surface);
+  color: var(--primary-hover);
+  box-shadow: var(--shadow-sm);
+  font-weight: 700;
+}
+
+/* Desktop Navigation Bar (Visible on Laptops) */
+.desktop-nav-bar {
+  display: none;
+  background: var(--slate-50);
+  border-bottom: 1px solid var(--slate-200);
+  padding: 0 20px;
+  gap: 8px;
+}
+
+.desktop-nav-link {
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  padding: 12px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--slate-600);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: inherit;
+  transition: var(--transition-fast);
+}
+
+.desktop-nav-link:hover {
+  color: var(--primary);
+}
+
+.desktop-nav-link.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+  font-weight: 700;
+}
+
+/* Location Status Banner */
+.location-status-bar {
+  display: none !important;
+}
+
+.location-pill {
+  color: var(--primary-hover);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.gps-live-dot {
+  width: 8px;
+  height: 8px;
+  background: #10b981;
+  border-radius: 50%;
+  display: inline-block;
+  animation: pulse-dot 1.5s infinite;
+}
+
+@keyframes pulse-dot {
+  0% { transform: scale(0.95); opacity: 0.7; }
+  50% { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.7; }
+}
+
+/* Proactive Scam Hotspot Banner */
+.proactive-alert-banner {
+  background: #fff1f2;
+  border-bottom: 1px solid #fecdd3;
+  padding: 12px 20px;
+  animation: slide-down 0.3s ease;
+}
+
+.proactive-alert-banner.hidden {
+  display: none !important;
+}
+
+.alert-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.alert-icon-box {
+  color: var(--danger);
+  font-size: 20px;
+  margin-top: 2px;
+}
+
+.alert-text {
+  flex: 1;
+}
+
+.alert-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--danger-dark);
+  margin-bottom: 2px;
+}
+
+.alert-desc {
+  font-size: 12px;
+  color: var(--slate-700);
+  line-height: 1.4;
+}
+
+.alert-dismiss-btn {
+  background: transparent;
+  border: none;
+  color: var(--slate-400);
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* Tab Navigation Bar (Mobile Bottom Dock) */
+.app-bottom-nav {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--surface-glass);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--slate-200);
+  display: flex;
+  justify-content: space-around;
+  padding: 8px 4px;
+  z-index: 100;
+}
+
+.nav-tab-btn {
+  background: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--slate-500);
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: var(--radius-sm);
+  transition: var(--transition-fast);
+  flex: 1;
+  font-family: inherit;
+}
+
+.nav-tab-btn i {
+  font-size: 18px;
+}
+
+.nav-tab-btn.active {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.nav-tab-btn.active i {
+  transform: translateY(-1px);
+}
+
+/* Floating SOS Button */
+.floating-sos-btn {
+  position: fixed;
+  bottom: 80px;
+  right: 24px;
+  width: 154px;
+  height: 50px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: #fff;
+  border: 3px solid #fff;
+  box-shadow: 0 8px 20px rgba(239, 68, 68, 0.45);
+  font-size: 25px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 999;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.floating-sos-btn:hover {
+  transform: scale(1.1);
+}
+
+.floating-sos-btn span {
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+}
+
+/* Main Viewport Content Scroll Area */
+.app-content-scroll {
+  flex: 1 1 0;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 14px 14px 20px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Tab Panels */
+.tab-content-panel {
+  display: none;
+}
+
+.tab-content-panel.active {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  animation: fade-in 0.25s ease;
+}
+
+/* Base Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: var(--radius-lg);
+  border: none;
+  cursor: pointer;
+  transition: var(--transition-normal);
+  text-decoration: none;
+  outline: none;
+  font-family: inherit;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 6px 16px rgba(5, 150, 105, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: var(--slate-800);
+  color: #fff;
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.btn-outline {
+  background: var(--surface);
+  border: 1px solid var(--slate-300);
+  color: var(--slate-700);
+}
+
+.btn-outline:hover {
+  background: var(--slate-100);
+  border-color: var(--slate-400);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn-lg {
+  padding: 14px 24px;
+  font-size: 15px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Modals */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 2000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.modal-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-card {
+  background: var(--surface);
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  border-radius: var(--radius-xl);
+  overflow-y: auto;
+  padding: 24px;
+  box-shadow: var(--shadow-xl);
+  position: relative;
+  animation: modal-pop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: var(--slate-100);
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--slate-600);
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.modal-close-btn:hover {
+  background: var(--slate-200);
+}
+
+/* Keyframe Animations */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-down {
+  from { transform: translateY(-100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes modal-pop {
+  from { transform: scale(0.92); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Role-based Visibility — hide nav items per role */
+/* Using max-width/overflow/opacity avoids fighting the media query display:flex !important */
+body.role-guide .traveler-only {
+  display: none !important;
+}
+body:not(.role-guide) .guide-only {
+  display: none !important;
+}
+
+/* Ensure tab panels render their content correctly */
+.tab-content-panel {
+  min-height: 0;
+}
+
+.tab-content-panel.active {
+  min-height: 100px;
+}
+
+/* ============================================================
+   VERIDA AI ASSISTANT
+   Custom Botpress launcher
+   ============================================================ */
+
+.verida-ai-trigger {
+  position: fixed;
+
+  right: 22px;
+  bottom: 24px;
+
+  z-index: 9998;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  min-width: 154px;
+  height: 50px;
+
+  padding: 7px 15px 7px 8px;
+
+  border: 1px solid rgba(15, 118, 110, 0.18);
+  border-radius: 18px;
+
+  background: #ffffff;
+
+  color: #0f172a;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 25px rgba(15, 42, 34, 0.12),
+    0 2px 8px rgba(15, 118, 110, 0.10);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+
+/* Hover */
+
+.verida-ai-trigger:hover {
+  transform: translateY(-2px);
+
+  border-color: rgba(15, 118, 110, 0.35);
+
+  box-shadow:
+    0 12px 30px rgba(15, 23, 42, 0.15),
+    0 4px 12px rgba(15, 118, 110, 0.15);
+}
+
+
+/* AI icon */
+
+.verida-ai-icon {
+  width: 42px;
+  height: 42px;
+  
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 13px;
+
+  background: #ecfdf5;
+
+  color: #0f766e;
+
+  font-size: 17px;
+}
+
+.verida-ai-icon img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+/* Text */
+
+.verida-ai-label {
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  line-height: 1.2;
+}
+
+.verida-ai-label strong {
+  font-size: 13px;
+
+  font-weight: 750;
+
+  color: #0f172a;
+}
+
+.verida-ai-label small {
+  margin-top: 3px;
+
+  font-size: 10px;
+
+  font-weight: 500;
+
+  color: #64748b;
+  text-align: center;
+}
+
+
+/* Small online indicator */
+
+.verida-ai-icon::after {
+  content: "";
+
+  position: absolute;
+
+  width: 8px;
+  height: 8px;
+
+  margin-top: 28px;
+  margin-left: 28px;
+
+  border: 2px solid #ffffff;
+
+  /* border-radius: 50%; */
+
+  /* background: #10b981; */
+}
+
+
+/* ============================================================
+   BOTPRESS WINDOW
+   ============================================================ */
+
+.bpWebchat {
+  z-index: 9997 !important;
+
+  right: 22px !important;
+  bottom: 92px !important;
+
+  width: 390px !important;
+  height: 600px !important;
+
+  max-width: calc(100vw - 30px) !important;
+  max-height: calc(100vh - 110px) !important;
+
+  border-radius: 20px !important;
+
+  overflow: hidden !important;
+
+  border: 1px solid #dbe7e5 !important;
+
+  box-shadow:
+    0 24px 60px rgba(15, 23, 42, 0.20) !important;
+}
+
+
+/* ============================================================
+   BOTPRESS VERIDA THEME
+   ============================================================ */
+
+.bpHeaderContainer {
+  border-bottom: 1px solid #e2e8f0 !important;
+
+  background: #ffffff !important;
+}
+
+.bpHeaderContentTitle {
+  color: #0f172a !important;
+
+  font-weight: 700 !important;
+}
+
+.bpHeaderContentDescription {
+  color: #64748b !important;
+}
+
+.bpContainer {
+  background: #f8fafc !important;
+}
+
+
+/* Bot messages */
+
+.bpMessageBlocksBubble {
+  border-radius: 14px !important;
+
+  border: 1px solid #e2e8f0 !important;
+
+  box-shadow:
+    0 1px 3px rgba(15, 23, 42, 0.04) !important;
+}
+
+
+/* Composer */
+
+.bpComposerWrapper {
+  background: #ffffff !important;
+
+  border-top: 1px solid #e2e8f0 !important;
+}
+
+.bpComposerContainer {
+  border-radius: 14px !important;
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+  .verida-ai-trigger {
+    right: 14px;
+    bottom: 18px;
+    min-width: 54px;
+    width: 54px;
+    height: 54px;
+    padding: 5px;
+    border-radius: 16px;
+  }
+
+  .modal-card {
+    width: calc(100vw - 24px);
+    max-width: calc(100vw - 24px);
+    max-height: calc(100dvh - 24px);
+    overflow-y: auto;
+    margin: auto;
+  }
+
+  .verida-ai-icon,.floating-sos-btn{
+    width: 42px;
+    height: 42px;
+  }
+
+  .verida-ai-label {
+    display: none;
+  }
+
+  .bpWebchat {
+    left: 10px !important;
+    right: 10px !important;
+
+    bottom: 82px !important;
+
+    width: auto !important;
+
+    height: calc(100vh - 100px) !important;
+
+    max-width: none !important;
+    max-height: calc(100vh - 100px) !important;
+
+    border-radius: 18px !important;
+  }
+}
+
+/* ============================================================================
+   AUTHENTICATED MOBILE MENU
+   A single top menu replaces the crowded bottom navigation on phones.
+   ============================================================================ */
+.app-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.mobile-app-menu-btn {
+  display: none;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--slate-200);
+  background: var(--surface);
+  color: var(--slate-800);
+  border-radius: 12px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+}
+.mobile-app-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+  background: rgba(15, 23, 42, 0.42);
+  backdrop-filter: blur(3px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .18s ease;
+}
+.mobile-app-menu.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.mobile-app-menu-panel {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  left: 10px;
+  background: var(--surface);
+  border: 1px solid var(--slate-200);
+  border-radius: 18px;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, .2);
+  padding: 14px;
+  max-height: calc(100vh - 20px);
+  overflow-y: auto;
+}
+.mobile-app-menu-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 2px 12px;
+  border-bottom: 1px solid var(--slate-200);
+}
+.mobile-app-menu-head strong,
+.mobile-app-menu-head span { display: block; }
+.mobile-app-menu-head strong { font-size: 15px; color: var(--slate-900); }
+.mobile-app-menu-head span { margin-top: 2px; font-size: 11px; color: var(--slate-500); }
+.mobile-menu-close {
+  border: 0;
+  background: var(--slate-100);
+  color: var(--slate-700);
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.mobile-menu-language {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 2px;
+  border-bottom: 1px solid var(--slate-200);
+}
+.mobile-menu-language label { font-size: 12px; font-weight: 700; color: var(--slate-700); }
+.mobile-menu-language select {
+  border: 1px solid var(--slate-300);
+  background: var(--slate-50);
+  border-radius: 10px;
+  padding: 7px 10px;
+  font: inherit;
+  font-size: 12px;
+}
+.mobile-menu-options { display: grid; gap: 7px; padding: 12px 0; }
+.mobile-menu-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  border: 1px solid var(--slate-200);
+  background: var(--surface);
+  color: var(--slate-800);
+  border-radius: 12px;
+  padding: 12px;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 650;
+}
+.mobile-menu-option i { width: 20px; text-align: center; color: var(--primary); }
+.mobile-menu-signout {
+  width: 100%;
+  border: 1px solid #fecaca;
+  background: #fff7f7;
+  color: #b91c1c;
+  border-radius: 12px;
+  padding: 12px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 750;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+@media (max-width: 767px) {
+  .mobile-app-menu-btn { display: inline-flex; }
+  /* Bottom nav is shown on mobile by the #single-app-shell rule in components.css */
+  /* Do NOT add display:none here — it was the bug hiding the bottom nav on mobile */
+  .desktop-nav-bar { display: none !important; }
+  .app-viewport-wrapper {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    min-height: 100svh;
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+    box-shadow: none;
+  }
+  .app-header { padding: 10px 12px; position: sticky; top: 0; z-index: 300; }
+  .header-top-row { margin-bottom: 8px; }
+  .brand-logo-full { height: 40px; max-width: 125px; }
+  .header-top-row .btn-profile-pill {
+    max-width: 115px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .header-top-row .city-select-box { display: none; }
+  .role-toggle-container { display: none !important; }
+  .location-status-bar { font-size: 10px; }
+  .app-content-scroll { padding: 12px; padding-bottom: 18px; }
+  .floating-sos-btn {
+    right: 12px;
+    bottom: 16px;
+    width: 68px;
+    height: 44px;
+    border-radius: 14px;
+  }
+}

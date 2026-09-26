@@ -1,0 +1,28 @@
+{
+  "name": "safarsaarthi-tourism-trust",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "SafarSaarthi — On-the-Spot Tourism Trust & Presence Protocol for In-Person, Unbooked Interactions",
+  "main": "index.html",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "deploy": "firebase deploy",
+    "deploy:hosting": "firebase deploy --only hosting",
+    "deploy:firestore": "firebase deploy --only firestore:rules"
+  },
+  "keywords": [
+    "tourism-safety",
+    "digital-handshake",
+    "proof-of-presence",
+    "anti-scam",
+    "vadodara",
+    "tesseract-ocr",
+    "firestore"
+  ],
+  "author": "SafarSaarthi Team",
+  "license": "MIT",
+  "devDependencies": {
+    "exceljs": "^4.4.0"
+  }
+}

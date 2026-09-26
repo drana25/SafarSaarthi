@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SafarSaarthi — On-the-Spot Tourism & Transit Trust Protocol</title>
+  <meta name="description" content="Real-time trust for unbooked in-person tourism & rickshaw transit with Passenger Digital Footprints, Route Fare Intelligence, 2-Way Driver Verification, and Live GPS Trip Tracking.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ---------- LANDING PAGE STYLES ---------- */
+    #verida-landing-website {
+      --forest-950:#0a1d12;
+      --forest-900:#0f2718;
+      --forest-800:#173722;
+      --forest-700:#20492e;
+      --forest-600:#2b5c3b;
+      --mint-300:#8fe3ac;
+      --mint-200:#b7edc9;
+      --mint-050:#e9f8ee;
+      --paper:#fbfbf6;
+      --paper-soft:#f1f3ec;
+      --paper-soft-2:#e9ece2;
+      --ink:#12201a;
+      --ink-soft:#4d5c53;
+      --ink-faint:#8a978d;
+      --amber:#e8bd6c;
+      --amber-soft:#faf0d8;
+      --amber-ink:#6b4a12;
+      --line:#e0e4d9;
+      --line-dark:#274531;
+      --r-lg:22px;
+      --r-md:16px;
+      --r-sm:10px;
+      --shadow-soft:0 20px 50px -25px rgba(15,39,24,0.35);
+      font-family: 'Sora', 'Inter', sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      width: 100%;
+      min-height: 100vh;
+      position: relative;
+      z-index: 100;
+    }
+    #verida-landing-website.hidden {
+      display: none !important;
+    }
+    #verida-landing-website .wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+    @media(max-width:720px){ #verida-landing-website .wrap { padding: 0 20px; } }
+
+    #verida-landing-website header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: rgba(251,251,246,0.86);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    #verida-landing-website .header-inner { display: flex; align-items: center; justify-content: space-between; padding: 16px 32px; max-width: 1180px; margin: 0 auto; }
+    #verida-landing-website .brand { display: flex; align-items: center; gap: 10px; }
+    #verida-landing-website .brand-mark {
+      width: 38px; height: 38px; border-radius: 11px; background: var(--forest-900);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    #verida-landing-website .brand-mark svg { width: 20px; height: 20px; }
+    #verida-landing-website .brand-name { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 1.05rem; color: var(--ink); line-height: 1.1; }
+    #verida-landing-website .brand-sub { font-family: 'IBM Plex Mono', monospace; font-size: .62rem; letter-spacing: .14em; color: var(--ink-faint); }
+    #verida-landing-website nav.main-nav { display: flex; gap: 34px; }
+    #verida-landing-website nav.main-nav a { font-size: .92rem; font-weight: 500; color: var(--ink-soft); transition: color .2s; text-decoration: none; }
+    #verida-landing-website nav.main-nav a:hover { color: var(--ink); }
+    #verida-landing-website .header-actions { display: flex; align-items: center; gap: 7px; }
+    #verida-landing-website .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      font-weight: 600; font-size: .9rem; border: none; border-radius: 100px;
+      padding: 11px 22px; transition: transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease;
+      white-space: nowrap; cursor: pointer;
+    }
+    #verida-landing-website .btn-primary { background: var(--forest-900); color: #fff; }
+    #verida-landing-website .btn-primary:hover { background: var(--forest-800); transform: translateY(-1px); box-shadow: var(--shadow-soft); }
+    #verida-landing-website .btn-ghost { background: transparent; color: var(--ink); padding: 8px 12px; }
+    #verida-landing-website .btn-ghost:hover { color: var(--forest-800); }
+    #verida-landing-website .btn-outline { background: transparent; color: var(--ink); border: 1.5px solid var(--line); }
+    #verida-landing-website .btn-outline:hover { border-color: var(--forest-700); color: var(--forest-800); }
+    #verida-landing-website .btn-light { background: #fff; color: var(--forest-900); }
+    #verida-landing-website .btn-light:hover { transform: translateY(-1px); box-shadow: var(--shadow-soft); }
+    #verida-landing-website .btn-amber { background: var(--amber); color: var(--amber-ink); }
+    #verida-landing-website .btn-amber:hover { filter: brightness(1.05); transform: translateY(-1px); }
+
+    #verida-landing-website .hero {
+      position: relative; overflow: hidden;
+      min-height: 100vh; min-height: 100svh;
+      display: flex; align-items: center;
+      padding: 104px 0 40px;
+      background: linear-gradient(180deg, #fdfdfa 0%, var(--paper) 60%);
+    }
+    #verida-landing-website .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.02fr .98fr; gap: 56px; align-items: center; }
+    @media(max-width:960px){ #verida-landing-website .hero-grid { grid-template-columns: 1fr; gap: 64px; } }
+
+    #verida-landing-website .pill {
+      display: inline-flex; align-items: center; gap: 8px; font-family: monospace; font-size: .72rem;
+      letter-spacing: .06em; color: var(--forest-800); background: var(--mint-050); border: 1px solid var(--mint-200);
+      padding: 7px 14px; border-radius: 100px; margin-bottom: 22px;
+    }
+    #verida-landing-website h1 { font-size: clamp(2.5rem, 4.6vw, 3.7rem); font-weight: 700; line-height: 1.08; color: var(--ink); margin: 0; }
+    #verida-landing-website h1 .accent {
+      background: linear-gradient(92deg, var(--forest-700), #3f8a5c);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    #verida-landing-website p.lead { font-size: 1.08rem; max-width: 520px; margin-top: 22px; color: var(--ink-soft); line-height: 1.65; }
+    #verida-landing-website .hero-actions { display: flex; gap: 14px; margin-top: 32px; flex-wrap: wrap; }
+    #verida-landing-website .hero-note { display: flex; align-items: center; gap: 9px; margin-top: 26px; font-size: .86rem; color: var(--ink-faint); }
+    #verida-landing-website .hero-note .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--forest-600); flex-shrink: 0; }
+
+    /* phone mockup */
+    #verida-landing-website .phone-stage { position: relative; display: flex; justify-content: center; }
+    #verida-landing-website .phone {
+      position: relative; width: 300px; background: var(--forest-950); border-radius: 38px;
+      padding: 14px; box-shadow: 0 40px 80px -30px rgba(10,29,18,0.55);
+    }
+    #verida-landing-website .phone-screen { background: var(--paper); border-radius: 26px; padding: 22px; margin-top: 10px; }
+    #verida-landing-website .phone-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+    #verida-landing-website .phone-head .label { font-weight: 600; font-size: .86rem; display: flex; align-items: center; gap: 7px; color: var(--ink); }
+    #verida-landing-website .phone-head .label .live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--forest-600); }
+    #verida-landing-website .phone-head .status { font-family: monospace; font-size: .62rem; color: var(--forest-700); letter-spacing: .05em; }
+    #verida-landing-website .qr-box { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 20px; display: flex; justify-content: center; }
+    #verida-landing-website .qr-box img { width: 180px; height: 180px; object-fit: contain; border-radius: 6px; display: block; }
+    #verida-landing-website .token-row { display: flex; align-items: center; justify-content: center; margin-top: -16px; position: relative; z-index: 2; }
+    #verida-landing-website .token-row span { background: var(--forest-950); color: #fff; font-family: monospace; font-weight: 600; font-size: .7rem; padding: 7px 14px; border-radius: 100px; }
+    #verida-landing-website .verified-chip {
+      display: inline-flex; align-items: center; gap: 6px; background: var(--mint-050); color: var(--forest-800);
+      font-size: .76rem; font-weight: 600; padding: 6px 12px; border-radius: 100px; margin: 14px auto 0; width: fit-content;
+    }
+    #verida-landing-website .driver-name { text-align: center; font-weight: 700; font-size: 1rem; margin-top: 12px; color: var(--ink); }
+    #verida-landing-website .driver-meta { text-align: center; font-family: monospace; font-size: .68rem; color: var(--ink-faint); margin-top: 4px; }
+    #verida-landing-website .fare-strip {
+      display: flex; align-items: center; justify-content: space-between; background: var(--forest-950); color: #fff;
+      border-radius: 12px; padding: 12px 14px; margin-top: 14px;
+    }
+    #verida-landing-website .fare-strip .l { font-size: .76rem; color: var(--mint-200); }
+    #verida-landing-website .fare-strip .v { font-family: monospace; font-weight: 600; font-size: .86rem; }
+
+    #verida-landing-website .float-card {
+      position: absolute; background: #fff; border: 1px solid var(--line); border-radius: var(--r-md);
+      padding: 12px 16px; box-shadow: var(--shadow-soft);
+    }
+    #verida-landing-website .float-card.warn { top: -6px; left: -48px; border-color: #f0dba8; }
+    #verida-landing-website .float-card.warn .t { color: var(--amber-ink); font-weight: 700; font-size: .82rem; }
+    #verida-landing-website .float-card.warn .s { font-family: monospace; font-size: .68rem; color: var(--ink-faint); margin-top: 2px; }
+    #verida-landing-website .float-card.ok { bottom: 14px; right: -38px; }
+    #verida-landing-website .float-card.ok .t { color: var(--forest-800); font-weight: 700; font-size: .8rem; }
+    #verida-landing-website .float-card.ok .s { font-family: monospace; font-size: .66rem; color: var(--ink-faint); margin-top: 2px; }
+
+    /* flow band */
+    #verida-landing-website .flow-band { background: var(--forest-950); color: #fff; padding: 88px 0; position: relative; overflow: hidden; }
+    #verida-landing-website .flow-eyebrow { font-family: monospace; font-size: .72rem; letter-spacing: .14em; color: var(--mint-300); text-align: center; margin-bottom: 26px; }
+    #verida-landing-website .flow-rows { display: flex; flex-direction: column; align-items: center; gap: 22px; position: relative; z-index: 1; }
+    #verida-landing-website .flow-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; justify-content: center; }
+    #verida-landing-website .flow-chip { padding: 11px 22px; border-radius: 100px; font-weight: 600; font-size: .92rem; display: flex; align-items: center; gap: 8px; }
+    #verida-landing-website .flow-chip.old { background: rgba(255,255,255,.05); color: rgba(255,255,255,.4); text-decoration: line-through; border: 1px solid rgba(255,255,255,.1); }
+    #verida-landing-website .flow-chip.old .x { color: #e08a5b; text-decoration: none; }
+    #verida-landing-website .flow-chip.new { background: var(--forest-700); color: #fff; border: 1px solid var(--forest-600); }
+    #verida-landing-website .flow-arrow { color: rgba(255,255,255,.3); font-size: 1.1rem; }
+    #verida-landing-website .flow-becomes { font-family: monospace; font-size: .7rem; letter-spacing: .16em; color: rgba(255,255,255,.45); margin: 6px 0; }
+    #verida-landing-website .flow-caption { max-width: 520px; text-align: center; color: rgba(255,255,255,.62); font-size: .94rem; margin-top: 14px; line-height: 1.6; }
+
+    /* marquee */
+    #verida-landing-website .marquee-wrap { background: var(--paper-soft); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 20px 0; overflow: hidden; white-space: nowrap; }
+    #verida-landing-website .marquee-track { display: inline-flex; }
+    #verida-landing-website .marquee-track span { font-family: monospace; font-size: .86rem; letter-spacing: .05em; color: var(--forest-800); padding: 0 26px; display: inline-flex; align-items: center; gap: 26px; }
+
+    /* section */
+    #verida-landing-website .section { padding: 104px 0; }
+    #verida-landing-website .eyebrow { font-family: monospace; font-size: .72rem; letter-spacing: .12em; color: var(--forest-700); display: flex; align-items: center; gap: 8px; margin-bottom: 18px; }
+    #verida-landing-website .eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--forest-600); }
+    #verida-landing-website .section-head { max-width: 640px; }
+    #verida-landing-website .section-head h2 { font-size: clamp(1.9rem,3vw,2.5rem); font-weight: 700; color: var(--ink); margin: 0; }
+    #verida-landing-website .section-head p { margin-top: 16px; font-size: 1.02rem; color: var(--ink-soft); line-height: 1.6; }
+    #verida-landing-website .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+    @media(max-width:900px){ #verida-landing-website .about-grid { grid-template-columns: 1fr; } }
+    #verida-landing-website .chapter-label { font-family: monospace; font-size: .7rem; letter-spacing: .1em; color: var(--ink-faint); margin-bottom: 16px; }
+    #verida-landing-website .quote-block { border-left: 3px solid var(--forest-700); padding-left: 22px; margin-bottom: 24px; }
+    #verida-landing-website .quote-block p { font-family: 'Sora', sans-serif; font-weight: 600; font-size: 1.4rem; color: var(--ink); line-height: 1.32; }
+    #verida-landing-website .quote-block p .g { color: var(--forest-700); }
+    #verida-landing-website .body-copy p { margin-bottom: 16px; font-size: .98rem; color: var(--ink-soft); line-height: 1.6; }
+    #verida-landing-website .rick-illustration { border-radius: var(--r-lg); overflow: hidden; position: relative; background: #0a1d12; aspect-ratio: 4/3.1; box-shadow: var(--shadow-soft); }
+    #verida-landing-website .rick-illustration img { width: 100%; height: 100%; object-fit: cover; }
+    #verida-landing-website .rick-caption { position: absolute; left: 14px; bottom: 14px; background: rgba(10,29,18,.72); backdrop-filter: blur(6px); color: #fff; padding: 8px 14px; border-radius: 100px; font-size: .8rem; }
+    #verida-landing-website .rick-tag { position: absolute; right: 14px; bottom: 14px; background: rgba(255,255,255,.14); backdrop-filter: blur(6px); color: #fff; padding: 7px 12px; border-radius: 100px; font-family: monospace; font-size: .62rem; }
+    #verida-landing-website .angle-box { margin-top: 20px; background: var(--mint-050); border: 1px solid var(--mint-200); border-radius: var(--r-md); padding: 22px; }
+
+    #verida-landing-website .feature-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; margin-top: 48px; }
+    @media(max-width:900px){ #verida-landing-website .feature-grid { grid-template-columns: repeat(2,1fr); } }
+    @media(max-width:620px){ #verida-landing-website .feature-grid { grid-template-columns: 1fr; } }
+    #verida-landing-website .feature-card { background: var(--paper-soft); border: 1px solid var(--line); border-radius: var(--r-md); padding: 28px 26px; }
+    #verida-landing-website .feature-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; }
+    #verida-landing-website .feature-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--mint-050); display: flex; align-items: center; justify-content: center; }
+    #verida-landing-website .feature-icon svg { width: 21px; height: 21px; color: var(--forest-800); }
+    #verida-landing-website .feature-num { font-family: monospace; font-size: .72rem; color: var(--ink-faint); }
+    #verida-landing-website .feature-card h3 { font-size: 1.08rem; font-weight: 700; margin-bottom: 10px; color: var(--ink); }
+    #verida-landing-website .feature-card p { font-size: .9rem; color: var(--ink-soft); line-height: 1.5; }
+
+    #verida-landing-website .fare-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 56px; align-items: center; }
+    @media(max-width:900px){ #verida-landing-website .fare-grid { grid-template-columns: 1fr; } }
+    #verida-landing-website .check-list { margin-top: 24px; display: flex; flex-direction: column; gap: 14px; }
+    #verida-landing-website .check-item { display: flex; align-items: flex-start; gap: 12px; font-size: .94rem; color: var(--ink); }
+    #verida-landing-website .check-item svg { width: 18px; height: 18px; color: var(--forest-700); flex-shrink: 0; margin-top: 2px; }
+    #verida-landing-website .fare-card { background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); padding: 26px; box-shadow: var(--shadow-soft); }
+    #verida-landing-website .fare-card-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; flex-wrap: wrap; gap: 10px; }
+    #verida-landing-website .fare-card-head h3 { font-size: 1.1rem; font-weight: 700; color: var(--ink); }
+    #verida-landing-website .badge { font-family: monospace; font-size: .64rem; letter-spacing: .06em; background: var(--forest-900); color: #fff; padding: 6px 11px; border-radius: 100px; display: inline-flex; align-items: center; gap: 5px; }
+    #verida-landing-website .route-box { border: 1px solid var(--line); border-radius: var(--r-sm); padding: 16px; position: relative; margin-bottom: 18px; }
+    #verida-landing-website .route-line { position: absolute; left: 26px; top: 34px; bottom: 34px; width: 1px; background: var(--line); }
+    #verida-landing-website .route-point { display: flex; align-items: flex-start; gap: 12px; position: relative; }
+    #verida-landing-website .route-point + .route-point { margin-top: 18px; }
+    #verida-landing-website .route-dot { width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--forest-700); background: #fff; margin-top: 4px; flex-shrink: 0; }
+    #verida-landing-website .route-point.dest .route-dot { background: var(--forest-900); border-color: var(--forest-900); }
+    #verida-landing-website .route-label { font-family: monospace; font-size: .62rem; letter-spacing: .06em; color: var(--ink-faint); }
+    #verida-landing-website .route-name { font-weight: 600; font-size: .94rem; margin-top: 2px; color: var(--ink); }
+    #verida-landing-website .fare-sub-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+    #verida-landing-website .fare-sub-row .lbl { font-weight: 600; font-size: .9rem; color: var(--ink); }
+    #verida-landing-website .range-badge { font-size: .74rem; background: var(--mint-050); color: var(--forest-800); padding: 5px 11px; border-radius: 100px; font-weight: 600; }
+    #verida-landing-website .rider-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-top: 1px solid var(--line); }
+    #verida-landing-website .rider-left { display: flex; align-items: center; gap: 12px; }
+    #verida-landing-website .rider-avatar { width: 34px; height: 34px; border-radius: 50%; background: var(--mint-050); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    #verida-landing-website .rider-avatar svg { width: 15px; height: 15px; color: var(--forest-700); }
+    #verida-landing-website .rider-name { font-weight: 600; font-size: .88rem; color: var(--ink); }
+    #verida-landing-website .rider-meta { font-family: monospace; font-size: .68rem; color: var(--ink-faint); margin-top: 2px; }
+    #verida-landing-website .rider-right { text-align: right; }
+    #verida-landing-website .rider-amt { font-family: monospace; font-weight: 600; font-size: .9rem; color: var(--ink); }
+    #verida-landing-website .rider-time { font-size: .68rem; color: var(--ink-faint); margin-top: 2px; }
+    #verida-landing-website .tout-alert { display: flex; gap: 10px; background: var(--amber-soft); border: 1px solid #ecd8a3; border-radius: var(--r-sm); padding: 14px; margin-top: 16px; }
+    #verida-landing-website .tout-alert svg { width: 18px; height: 18px; color: var(--amber-ink); flex-shrink: 0; margin-top: 1px; }
+    #verida-landing-website .tout-alert p { font-size: .84rem; color: var(--amber-ink); line-height: 1.5; margin: 0; }
+
+    #verida-landing-website .ledger-band { background: var(--paper-soft); }
+    #verida-landing-website .chain-row { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 48px; flex-wrap: wrap; }
+    #verida-landing-website .chain-card { background: #fff; border: 1px solid var(--line); border-radius: var(--r-md); padding: 20px 22px; text-align: center; min-width: 140px; }
+    #verida-landing-website .chain-num { font-family: monospace; font-size: .68rem; color: var(--forest-700); margin-bottom: 8px; }
+    #verida-landing-website .chain-title { font-weight: 700; font-size: .92rem; color: var(--ink); }
+    #verida-landing-website .chain-arrow { color: var(--ink-faint); flex-shrink: 0; }
+
+    #verida-landing-website .sos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+    @media(max-width:900px){ #verida-landing-website .sos-grid { grid-template-columns: 1fr; } }
+    #verida-landing-website .sos-grid p { margin-bottom: 14px; font-size: .98rem; color: var(--ink-soft); line-height: 1.6; }
+    #verida-landing-website .dossier-card { background: var(--forest-950); color: #fff; border-radius: var(--r-lg); padding: 26px; box-shadow: var(--shadow-soft); }
+    #verida-landing-website .dossier-head { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--line-dark); }
+    #verida-landing-website .dossier-icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(232,189,108,.16); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    #verida-landing-website .dossier-icon svg { width: 20px; height: 20px; color: var(--amber); }
+    #verida-landing-website .dossier-head h3 { color: #fff; font-size: 1.05rem; font-weight: 700; margin: 0; }
+    #verida-landing-website .dossier-head .sub { font-family: monospace; font-size: .66rem; letter-spacing: .05em; color: var(--mint-300); margin-top: 3px; }
+    #verida-landing-website .dossier-row { display: flex; align-items: center; justify-content: space-between; padding: 11px 0; border-bottom: 1px solid var(--line-dark); gap: 14px; }
+    #verida-landing-website .dossier-row .k { font-size: .86rem; color: rgba(255,255,255,.6); }
+    #verida-landing-website .dossier-row .v { font-family: monospace; font-size: .82rem; font-weight: 500; text-align: right; color: #fff; }
+
+    #verida-landing-website .trust-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-top: 44px; }
+    @media(max-width:900px){ #verida-landing-website .trust-grid { grid-template-columns: repeat(2,1fr); } }
+    @media(max-width:520px){ #verida-landing-website .trust-grid { grid-template-columns: 1fr; } }
+    #verida-landing-website .trust-item { display: flex; align-items: flex-start; gap: 12px; background: var(--paper-soft); border: 1px solid var(--line); border-radius: var(--r-md); padding: 18px; }
+    #verida-landing-website .trust-item .ic { width: 26px; height: 26px; border-radius: 50%; background: var(--forest-900); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    #verida-landing-website .trust-item .ic svg { width: 13px; height: 13px; color: #fff; }
+    #verida-landing-website .trust-item p { font-size: .88rem; font-weight: 600; color: var(--ink); margin: 0; line-height: 1.4; }
+
+    #verida-landing-website .final-cta { background: var(--forest-950); color: #fff; padding: 100px 0; text-align: center; position: relative; overflow: hidden; }
+    #verida-landing-website .final-cta h2 { position: relative; z-index: 1; color: #fff; font-size: clamp(2rem,3.6vw,2.8rem); max-width: 620px; margin: 0 auto; }
+    #verida-landing-website .final-cta p { position: relative; z-index: 1; color: rgba(255,255,255,.65); max-width: 480px; margin: 18px auto 0; font-size: 1.02rem; }
+    #verida-landing-website .final-cta .hero-actions { position: relative; z-index: 1; justify-content: center; margin-top: 34px; }
+
+    #verida-landing-website footer { background: var(--forest-950); color: rgba(255,255,255,.7); padding: 56px 0 34px; border-top: 1px solid var(--line-dark); }
+    #verida-landing-website .footer-grid { display: grid; grid-template-columns: 1.4fr .8fr .8fr 1fr; gap: 40px; }
+    @media(max-width:820px){ #verida-landing-website .footer-grid { grid-template-columns: 1fr 1fr; row-gap: 36px; } }
+    @media(max-width:520px){ #verida-landing-website .footer-grid { grid-template-columns: 1fr; } }
+    #verida-landing-website .footer-brand .brand-mark { background: rgba(255,255,255,.08); }
+    #verida-landing-website .footer-brand .brand-name { color: #fff; }
+    #verida-landing-website .footer-brand p { margin-top: 16px; font-size: .88rem; max-width: 280px; color: rgba(255,255,255,.5); }
+    #verida-landing-website .footer-col h4 { font-size: .8rem; color: rgba(255,255,255,.4); font-family: monospace; letter-spacing: .08em; margin-bottom: 16px; font-weight: 500; }
+    #verida-landing-website .footer-col a { display: block; font-size: .88rem; color: rgba(255,255,255,.72); margin-bottom: 11px; transition: color .2s; text-decoration: none; }
+    #verida-landing-website .footer-col a:hover { color: #fff; }
+    #verida-landing-website .emergency-box { background: rgba(255,255,255,.05); border: 1px solid var(--line-dark); border-radius: var(--r-md); padding: 18px; }
+    #verida-landing-website .emergency-box h4 { color: var(--amber); font-family: monospace; font-size: .7rem; letter-spacing: .1em; margin-bottom: 12px; font-weight: 600; }
+    #verida-landing-website .emergency-row { display: flex; align-items: center; gap: 9px; font-size: .86rem; color: #fff; margin-bottom: 10px; font-weight: 600; }
+    #verida-landing-website .emergency-row svg { width: 15px; height: 15px; color: var(--amber); flex-shrink: 0; }
+    #verida-landing-website .footer-bottom { margin-top: 44px; padding-top: 22px; border-top: 1px solid var(--line-dark); font-size: .78rem; color: rgba(255,255,255,.38); text-align: center; }
+
+    /* Trip Preference Modal Custom Styling */
+    .pref-chip-btn, .pref-interest-btn, .pref-child-btn, .pref-hotel-btn {
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--slate-300, #cbd5e1);
+      background: #ffffff;
+      color: var(--slate-700, #334155);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.18s ease;
+    }
+    .pref-chip-btn.active, .pref-interest-btn.active, .pref-child-btn.active, .pref-hotel-btn.active {
+      background: #0f172a;
+      color: #ffffff;
+      border-color: #0f172a;
+    }
+    .pref-choice-row { display:flex; gap:10px; }
+    .pref-hotel-btn { flex:1; justify-content:center; }
+  </style>
+</head>
+<body>
+
+  <!-- ===== SAFARSAARTHI LANDING PAGE (shown before auth) ===== -->
+  <div id="verida-landing-website">
+    <!-- NAV -->
+    <header>
+      <div class="header-inner">
+        <div class="brand">
+          <div class="brand-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <div class="brand-name">SafarSaarthi</div>
+          </div>
+        </div>
+        <nav class="main-nav" style="display:none;">
+          <a href="#about">About</a>
+          <a href="#fare">Fare Intel</a>
+          <a href="#safety">Safety</a>
+          <a href="#ledger">Ledger</a>
+        </nav>
+        <div class="header-actions">
+          <button class="btn btn-ghost" onclick="window.veridaLandingSignIn()" id="landing-signin-btn">Sign In</button>
+          <button class="btn btn-primary" onclick="window.veridaLandingSignUp()" id="landing-signup-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+            Get Started
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-grid">
+          <div>
+            <div class="pill">
+              <span style="width:7px;height:7px;border-radius:50%;background:var(--forest-600);display:inline-block;"></span>
+              Real-time Transit Trust Protocol
+            </div>
+            <h1>Explore India.<br><span class="accent">Without the Scam.</span></h1>
+            <p class="lead">SafarSaarthi gives tourists, solo travellers &amp; families a real-time trust layer for unbooked rickshaw rides and on-the-spot tourism — exactly where 90% of real scams happen.</p>
+            <div class="hero-actions">
+              <button class="btn btn-primary" onclick="window.veridaLandingSignUp()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                Start Your Safe Trip
+              </button>
+              <button class="btn btn-outline" onclick="window.veridaLandingSignIn()">Sign In</button>
+            </div>
+            <div class="hero-note">
+              <span class="dot"></span>
+              Protecting tourists in Vadodara · Agra · Delhi · Jaipur
+            </div>
+          </div>
+
+          <!-- Phone Mockup -->
+          <div class="phone-stage">
+            <div class="float-card warn">
+              <div class="t">⚠️ Tout Alert: Station Sq.</div>
+              <div class="s">Unmetered autos quoting ₹350 · fair rate ₹90</div>
+            </div>
+            <div class="phone">
+              <div style="width:40px;height:5px;border-radius:3px;background:rgba(255,255,255,.1);margin:0 auto;"></div>
+              <div class="phone-screen">
+                <div class="phone-head">
+                  <div class="label"><span class="live-dot"></span> Driver QR · Live</div>
+                  <div class="status">TOKEN: 08s ↺</div>
+                </div>
+                <div class="qr-box">
+                  <svg width="180" height="180" viewBox="0 0 180 180" fill="none">
+                    <rect x="10" y="10" width="60" height="60" rx="8" stroke="#12201a" stroke-width="5"/>
+                    <rect x="22" y="22" width="36" height="36" rx="4" fill="#12201a"/>
+                    <rect x="110" y="10" width="60" height="60" rx="8" stroke="#12201a" stroke-width="5"/>
+                    <rect x="122" y="22" width="36" height="36" rx="4" fill="#12201a"/>
+                    <rect x="10" y="110" width="60" height="60" rx="8" stroke="#12201a" stroke-width="5"/>
+                    <rect x="22" y="122" width="36" height="36" rx="4" fill="#12201a"/>
+                    <rect x="90" y="90" width="12" height="12" fill="#12201a"/>
+                    <rect x="106" y="90" width="12" height="12" fill="#12201a"/>
+                    <rect x="122" y="90" width="12" height="12" fill="#12201a"/>
+                    <rect x="90" y="106" width="12" height="12" fill="#12201a"/>
+                    <rect x="90" y="122" width="12" height="12" fill="#12201a"/>
+                    <rect x="122" y="122" width="12" height="12" fill="#12201a"/>
+                    <rect x="106" y="138" width="12" height="12" fill="#12201a"/>
+                    <rect x="138" y="106" width="12" height="12" fill="#12201a"/>
+                    <rect x="138" y="138" width="12" height="12" fill="#12201a"/>
+                  </svg>
+                </div>
+                <div class="token-row" style="margin-top:10px;"><span>🔐 TOKEN · 4a7f · LIVE</span></div>
+                <div style="display:flex;justify-content:center;margin-top:12px;">
+                  <div class="verified-chip">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    Govt Verified · RTO Gujarat
+                  </div>
+                </div>
+                <div class="driver-name">Mehul Bhai Solanki</div>
+                <div class="driver-meta">GJ-06-AU-7892 · CNG Auto · Trust 98%</div>
+                <div class="fare-strip">
+                  <div><div class="l">Station → Palace</div><div class="v">Fair Rate: ₹80–₹100</div></div>
+                  <div><div class="l">Last paid</div><div class="v">₹100 ✓</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="float-card ok">
+              <div class="t">✅ Handshake Verified</div>
+              <div class="s">GPS locked · Ledger logged</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FLOW BAND -->
+    <div class="flow-band">
+      <div class="wrap">
+        <p class="flow-eyebrow">THE SAFARSAARTHI JOURNEY</p>
+        <div class="flow-rows">
+          <div class="flow-row">
+            <div class="flow-chip new">📱 Sign Up</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-chip new">🧳 Trip Preferences</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-chip new">🗺️ Personalized Radar</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-chip new">🏛️ Place Details + Safety</div>
+          </div>
+          <div class="flow-row">
+            <div class="flow-chip new">⚠️ Scam Awareness</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-chip new">📸 Scan Driver QR</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-chip new">🤝 Digital Handshake</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-chip new">💳 Payment + Review</div>
+          </div>
+        </div>
+      </div> 
+    </div>
+
+    <!-- MARQUEE -->
+    <div class="marquee-wrap">
+      <div class="marquee-track">
+        <span>📍 Laxmi Vilas Palace &bull; ⭐ 4.5 &bull; Matches Family + Heritage preference &bull; Match 80/110</span>
+        <span>⚠️ Station Tout Zone · Street Lighting: Medium · Scam Alerts: 2 Active</span>
+        <span>🌳 Sayaji Garden · Night Activity: High · Transport: Good · Child Friendly</span>
+        <span>🏛️ Champaner UNESCO · Cultural + Heritage Match · Match 70/110</span>
+        <span>💡 Mandvi Gate · Street Lighting: Good · Pedestrian: High · Historic District</span>
+        <span>📍 Laxmi Vilas Palace &bull; ⭐ 4.5 &bull; Matches Family + Heritage preference &bull; Match 80/110</span>
+        <span>⚠️ Station Tout Zone · Street Lighting: Medium · Scam Alerts: 2 Active</span>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="wrap">
+        <div class="about-grid">
+          <div>
+            <p class="chapter-label">// 01 — THE PROBLEM</p>
+            <div class="quote-block">
+              <p>Every platform protects you when you <span class="g">pre-book.</span> Nobody protects you on-the-spot.</p>
+            </div>
+            <div class="body-copy">
+              <p>When you step off a train and need a rickshaw — there's no protection. No price transparency. No driver verification. No record. Just trust, cash, and hope.</p>
+              <p>This is where 90%+ of real tourist scams happen. SafarSaarthi fills exactly this gap.</p>
+            </div>
+            <div class="angle-box">
+              <strong style="color:var(--forest-800);">The SafarSaarthi Angle</strong>
+              <p style="font-size:.9rem;color:#4d5c53;margin-top:8px;line-height:1.5;">Trip-aware personalization + area safety context + scam awareness + real-time driver verification = the complete tourist protection layer for on-the-spot travel.</p>
+            </div>
+          </div>
+          <div>
+            <div class="rick-illustration">
+              <img src="rickshow.png" alt="SafarSaarthi — Protecting tourists on the spot" style="opacity:0.85;">
+              <div class="rick-caption">📍 Vadodara, Gujarat</div>
+              <div class="rick-tag">VERIFIED ZONE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="section" style="background:var(--paper-soft);padding-top:64px;padding-bottom:64px;">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow"><span class="dot"></span> PLATFORM FEATURES</div>
+          <h2>Everything you need. On the spot.</h2>
+          <p>From discovery to verification to payment — every step of the unbooked tourist journey, covered.</p>
+        </div>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-top"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div><span class="feature-num">01</span></div>
+            <h3>Trip-Aware Personalization</h3>
+            <p>Tell SafarSaarthi your trip type — Family, Business, Solo, Cultural — and get places ranked specifically for your journey.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-top"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><span class="feature-num">02</span></div>
+            <h3>Hotspot Radar & Scam Alerts</h3>
+            <p>Live geofencing for tout zones, with area safety context and reported scam alerts — not a mysterious AI score, but explainable facts.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-top"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><span class="feature-num">03</span></div>
+            <h3>Driver QR Verification</h3>
+            <p>Every driver carries a GPS-locked rotating QR token. Scan it in 5 seconds to verify government credentials on the spot.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-top"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div><span class="feature-num">04</span></div>
+            <h3>Digital Handshake</h3>
+            <p>A cryptographic agreement between passenger and driver — GPS proximity verified, logged immutably, accessible by tourist police.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-top"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><span class="feature-num">05</span></div>
+            <h3>Route Fare Intelligence</h3>
+            <p>Real prices from the last 3 passengers on every route. Know the fair rate before you negotiate — and report what you paid in 3 seconds.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-top"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><span class="feature-num">06</span></div>
+            <h3>Tourist Police SOS Dossier</h3>
+            <p>One tap generates a complete evidence package: suspect description, GPS location, driver credentials, timestamp — ready for 1363.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FARE SECTION -->
+    <section class="section" id="fare">
+      <div class="wrap">
+        <div class="fare-grid">
+          <div>
+            <div class="eyebrow"><span class="dot"></span> FARE INTELLIGENCE</div>
+            <div class="section-head">
+              <h2>Know the fair price before you negotiate.</h2>
+              <p>Crowd-sourced from real passengers — not estimated, not fixed. What the last 3 people actually paid on your route.</p>
+            </div>
+            <ul class="check-list">
+              <li class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Live price benchmarks per route pair</li>
+              <li class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Scam premium detection (overcharging alerts)</li>
+              <li class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 3-second price pulse reporting</li>
+              <li class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Vehicle reg. number + driver logged per fare</li>
+            </ul>
+          </div>
+          <div>
+            <div class="fare-card">
+              <div class="fare-card-head">
+                <h3>Station → Laxmi Vilas Palace</h3>
+                <span class="badge">🔴 LIVE</span>
+              </div>
+              <p style="font-size:.8rem;color:#8a978d;margin-bottom:18px;font-family:monospace;">Vadodara · Auto-Rickshaw (CNG)</p>
+              <div class="route-box">
+                <div class="route-line"></div>
+                <div class="route-point"><div class="route-dot"></div><div><div class="route-label">FROM</div><div class="route-name">Vadodara Junction Railway Station</div></div></div>
+                <div class="route-point dest"><div class="route-dot"></div><div><div class="route-label">TO</div><div class="route-name">Laxmi Vilas Palace, Old Palace Rd</div></div></div>
+              </div>
+              <div class="fare-sub-row"><span class="lbl">Fair Rate Range</span><span class="range-badge">₹80 – ₹100</span></div>
+              <div class="rider-row"><div class="rider-left"><div class="rider-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div><div class="rider-name">Marcus K. (Germany)</div><div class="rider-meta">GJ-06-AU-7892 · Mehul Bhai</div></div></div><div class="rider-right"><div class="rider-amt">₹100</div><div class="rider-time">14m ago</div></div></div>
+              <div class="rider-row"><div class="rider-left"><div class="rider-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div><div class="rider-name">Priya &amp; Rohan (Bangalore)</div><div class="rider-meta">GJ-06-AU-4410 · Ramesh R.</div></div></div><div class="rider-right"><div class="rider-amt">₹90</div><div class="rider-time">42m ago</div></div></div>
+              <div class="tout-alert"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><p>⚠️ Unmetered drivers at Platform 6 exit frequently demand ₹250–₹400. Fair verified rate is ₹90–₹100.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEDGER CHAIN -->
+    <section class="section ledger-band" id="ledger">
+      <div class="wrap">
+        <div class="section-head" style="margin:0 auto;text-align:center;max-width:580px;">
+          <div class="eyebrow" style="justify-content:center;"><span class="dot"></span> DIGITAL FOOTPRINT LEDGER</div>
+          <h2>Every encounter is logged. Forever.</h2>
+          <p>Every verified handshake creates an immutable record — driver credentials, passenger ID, GPS, agreed price, timestamp. Accessible by tourist police.</p>
+        </div>
+        <div class="chain-row">
+          <div class="chain-card"><div class="chain-num">STEP 01</div><div class="chain-title">Passenger Registers</div></div>
+          <div class="chain-arrow">→</div>
+          <div class="chain-card"><div class="chain-num">STEP 02</div><div class="chain-title">Scans Driver QR</div></div>
+          <div class="chain-arrow">→</div>
+          <div class="chain-card"><div class="chain-num">STEP 03</div><div class="chain-title">GPS Proximity Check</div></div>
+          <div class="chain-arrow">→</div>
+          <div class="chain-card"><div class="chain-num">STEP 04</div><div class="chain-title">Digital Handshake</div></div>
+          <div class="chain-arrow">→</div>
+          <div class="chain-card"><div class="chain-num">STEP 05</div><div class="chain-title">Immutable Ledger Entry</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRUST -->
+    <section class="section" style="padding-bottom:80px;">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow"><span class="dot"></span> WHY SAFARSAARTHI</div>
+          <h2>Built for real-world trust.</h2>
+        </div>
+        <div class="trust-grid">
+          <div class="trust-item"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><p>Works with zero pre-booking — protects cash, on-the-spot decisions</p></div>
+          <div class="trust-item"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><p>RTO &amp; Government credential verification for every driver</p></div>
+          <div class="trust-item"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><p>Explainable recommendations — no black-box AI scores</p></div>
+          <div class="trust-item"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><p>Scam alerts sourced from verified tourist police &amp; traveller reports</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <div class="final-cta">
+      <div class="wrap">
+        <h2>Know the Place. Understand the Risks.<br>Verify the Ride.</h2>
+        <p>Join thousands of travellers who explore India safely with SafarSaarthi's real-time trust protocol.</p>
+        <div class="hero-actions">
+          <button class="btn btn-light" onclick="window.veridaLandingSignUp()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+            Start Your Safe Trip
+          </button>
+          <button class="btn btn-outline" style="border-color:rgba(255,255,255,.3);color:rgba(255,255,255,.85);" onclick="window.veridaLandingSignIn()">Sign In</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="wrap">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="brand">
+              <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+              <div class="brand-name">SafarSaarthi</div>
+            </div>
+            <p>Real-time transit &amp; tourism trust protocol for on-the-spot travel across India.</p>
+          </div>
+          <div class="footer-col">
+            <h4>PRODUCT</h4>
+            <a href="#">Hotspot Radar</a>
+            <a href="#">Driver QR Verify</a>
+            <a href="#">Fare Intelligence</a>
+            <a href="#">Digital Handshake</a>
+          </div>
+          <div class="footer-col">
+            <h4>SAFETY</h4>
+            <a href="#">Area Safety</a>
+            <a href="#">Scam Awareness</a>
+            <a href="#">SOS Dossier</a>
+            <a href="#">Police Ledger</a>
+          </div>
+          <div class="footer-col">
+            <div class="emergency-box">
+              <h4>🚨 EMERGENCY</h4>
+              <div class="emergency-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.59 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>1363 — Tourist Police</div>
+              <div class="emergency-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.59 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>112 — Police &amp; Emergency</div>
+              <div class="emergency-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.59 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>181 — Women's Helpline</div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">© 2026 SafarSaarthi · Transit &amp; Tourism Trust Protocol · SIH 2026 Prototype · PROTOTYPE DATA — For demonstration purposes only.</div>
+      </div>
+    </footer>
+  </div><!-- end #verida-landing-website -->
+
+  <!-- Stage Control Bar -->
+ <!-- <header class="stage-control-bar">
+    <div class="stage-bar-left">
+      <span class="stage-logo-badge">VERIDA</span>
+      <span style="font-size:12px;color:#94a3b8;">Transit & Tourism Trust Protocol</span>
+    </div>
+    <div class="stage-bar-right">
+      <select id="demo-teleport-select" class="stage-select" title="Simulate GPS Location">
+        <option value="">🎯 Teleport GPS...</option>
+        <option value="vad-laxmi-vilas">📍 Vadodara: Laxmi Vilas Palace</option>
+        <option value="vad-station-hotspot">⚠️ Vadodara: Station (Tout Zone)</option>
+        <option value="vad-champaner">📍 Vadodara: Champaner UNESCO</option>
+        <option value="vad-sayaji-baug">📍 Vadodara: Sayaji Baug</option>
+        <option value="agr-taj-mahal">📍 Agra: Taj Mahal East Gate</option>
+        <option value="del-red-fort">⚠️ Delhi: Red Fort (Scam Zone)</option>
+        <option value="jai-hawa-mahal">📍 Jaipur: Hawa Mahal</option>
+      </select>
+      <button type="button" class="btn-stage" id="toggle-view-mode-btn" title="Toggle Phone Simulator">
+        <i class="fas fa-mobile-screen"></i> Phone Frame
+      </button>
+      <button type="button" class="btn-stage" id="toggle-dual-screen-btn" title="Dual Stage: Passenger + Driver">
+        <i class="fas fa-columns"></i> Dual Stage View
+      </button>
+    </div>
+  </header>
+-->
+  <!-- ===== SINGLE APP SHELL (Laptop + Mobile) ===== -->
+  <div class="app-viewport-wrapper" id="single-app-shell" style="display:none;">
+
+    <header class="app-header">
+      <div class="header-top-row">
+    <div class="brand-identity">
+          <img src="logo.jpeg" alt="SafarSaarthi — Explore Safely, Discover More" class="brand-logo-full" >
+    </div>
+        <div class="app-header-actions">
+          <div class="city-select-box">
+            <select id="header-city-selector" aria-label="Select City"></select>
+          </div>
+          <div style="position: relative;">
+            <button type="button" class="mobile-app-menu-btn" id="mobile-app-menu-btn" aria-label="Open app menu" aria-expanded="false">
+              <i class="fas fa-ellipsis-v"></i>
+            </button>
+            
+            <!-- ===== HEADER DROPDOWN MENU ===== -->
+            <div class="header-dropdown-menu" id="mobile-app-menu" aria-hidden="true">
+              <nav class="header-dropdown-nav">
+                <!-- Profile -->
+                <button type="button" class="dropdown-option" id="mobile-menu-profile-btn">
+                  <i class="fas fa-user-circle"></i><span>Profile</span>
+                </button>
+                
+                <!-- Language -->
+                <div class="dropdown-language">
+                  <i class="fas fa-language"></i>
+                  <select id="mobile-language-select" class="dropdown-language-select">
+                    <option value="en">English</option>
+                    <option value="hi">हिंदी</option>
+                    <option value="gu">ગુજરાતી</option>
+                  </select>
+                </div>
+                
+                <!-- Sign out -->
+                <button type="button" class="dropdown-option dropdown-signout" id="mobile-menu-signout">
+                  <i class="fas fa-right-from-bracket"></i><span>Sign out</span>
+                </button>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <div class="location-status-bar">
+        <span class="location-pill" id="current-location-pill">
+          <span class="gps-live-dot"></span> Laxmi Vilas Palace, Vadodara
+        </span>
+        <span style="font-size:11px;color:var(--slate-500);"><i class="fas fa-satellite"></i> GPS Active</span>
+      </div>
+    </header>
+
+    <!-- Desktop Nav -->
+    <nav class="desktop-nav-bar" aria-label="Desktop Navigation">
+      <button type="button" class="desktop-nav-link active" data-tab="transit"><i class="fas fa-route"></i> Transit & Routes</button>
+      <button type="button" class="desktop-nav-link traveler-only" data-tab="handshake"><i class="fas fa-handshake"></i> Handshake</button>
+      <button type="button" class="desktop-nav-link traveler-only" data-tab="radar"><i class="fas fa-map-location-dot"></i> Hotspot Radar</button>
+      <button type="button" class="desktop-nav-link guide-only" data-tab="guide-qr"><i class="fas fa-qrcode"></i> Driver QR</button>
+      <button type="button" class="desktop-nav-link" data-tab="ledger"><i class="fas fa-book-bookmark"></i> Ledger</button>
+      <button type="button" class="desktop-nav-link" data-tab="profile"><i class="fas fa-user-circle"></i> Profile</button>
+    </nav>
+
+    <!-- Proactive Scam Banner -->
+    <div id="hotspot-proactive-banner" class="proactive-alert-banner hidden"></div>
+
+    <!-- Ticker Strip Removed -->
+
+    <!-- Live Trip HUD (floats during active trip) -->
+    <div id="live-trip-tracker-hud" class="live-trip-hud hidden"></div>
+
+    <main class="app-content-scroll">
+
+      <!-- === APP TABS === -->
+
+        <!-- TAB 0: Transit Safety (DEFAULT) -->
+        <section id="tab-transit" class="tab-content-panel active">
+          <div id="route-planner-container"></div>
+        </section>
+
+        <!-- TAB 1: Digital Handshake -->
+        <section id="tab-handshake" class="tab-content-panel">
+          <div class="handshake-hero-card">
+            <div class="hero-icon-bubble"><i class="fas fa-handshake-simple"></i></div>
+            <h2>Digital Handshake</h2>
+            <p class="hero-subtitle">Verify any rickshaw driver, guide, or stranger in 5 seconds using a GPS-locked rotating QR code. Works even when they have no app.</p>
+            <div class="hero-action-box">
+              <button type="button" class="btn btn-primary btn-block btn-lg" id="scan-driver-qr-btn">
+                <i class="fas fa-qrcode"></i> Scan Driver QR
+              </button>
+              <button type="button" class="btn btn-outline btn-block" id="zero-app-driver-btn">
+                <i class="fas fa-car-on"></i> Driver Has No App? (Plate Scanner)
+              </button>
+              <button type="button" class="btn btn-outline btn-block" id="start-camera-scan-btn" style="margin-top: 8px;">
+                <i class="fas fa-camera"></i> Open Camera QR Scanner
+              </button>
+            </div>
+            <div class="value-prop-grid">
+              <div class="prop-card"><i class="fas fa-shield-check prop-icon"></i><span class="prop-title">Govt Verified</span><span class="prop-desc">RTO / Gujarat Tourism</span></div>
+              <div class="prop-card"><i class="fas fa-fingerprint prop-icon"></i><span class="prop-title">Digital Footprint</span><span class="prop-desc">Logged with police radar</span></div>
+              <div class="prop-card"><i class="fas fa-lock prop-icon"></i><span class="prop-title">Anti-Tamper</span><span class="prop-desc">15s rotating token</span></div>
+            </div>
+          </div>
+          <div id="camera-scanner-wrapper" class="camera-scanner-card hidden">
+            <div class="camera-scanner-header">
+              <span><i class="fas fa-expand"></i> Align Driver / Guide QR Code</span>
+              <button type="button" class="modal-close-btn" id="close-camera-scanner-btn" style="position:static;"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="qr-reader"></div>
+          </div>
+          <div style="background:#f8fafc;border:1px dashed #cbd5e1;border-radius:var(--radius-lg);padding:14px;font-size:12px;color:#475569;margin-top:16px;">
+            <strong style="color:#0f172a;font-size:13px;"><i class="fas fa-lightbulb" style="color:#f59e0b;"></i> The SafarSaarthi Angle:</strong>
+            <p style="margin-top:4px;line-height:1.5;">Every other platform only protects you when you pre-book. <strong>SafarSaarthi protects you on-the-spot</strong>, in cash, from a stranger — exactly where 90%+ of real scams happen.</p>
+          </div>
+        </section>
+
+        <!-- TAB 2: Hotspot Radar -->
+        <section id="tab-radar" class="tab-content-panel">
+          <div class="hotel-stay-entry">
+            <button type="button" id="open-hotel-safety-btn">
+              <span class="stay-icon"><i class="fas fa-hotel"></i></span>
+              <span><strong id="hotel-safety-btn-label">Check My Stay</strong><small id="hotel-safety-btn-sub">Select your hotel to see the surrounding area</small></span>
+              <i class="fas fa-chevron-right" style="margin-left:auto;color:#94a3b8;"></i>
+            </button>
+          </div>
+          <div class="hotspots-directory-header">
+            <input type="text" id="hotspot-search-input" class="hotspots-search-input" placeholder="🔍 Search places, landmarks, market touts...">
+            <div class="hotspots-category-pills">
+              <button type="button" class="hotspot-cat-btn active" data-cat="all">All Locations</button>
+              <button type="button" class="hotspot-cat-btn" data-cat="scam">🚨 Tout Hotspots</button>
+              <button type="button" class="hotspot-cat-btn" data-cat="Heritage">🏛️ Heritage</button>
+              <button type="button" class="hotspot-cat-btn" data-cat="Gardens">🌳 Nature & Lakes</button>
+              <button type="button" class="hotspot-cat-btn" data-cat="Temples">🕉️ Temples</button>
+              <button type="button" class="hotspot-cat-btn" data-cat="Food">🍲 Food</button>
+            </div>
+
+            <!-- Mobile-only compact Hotspot Radar controls.
+                 Desktop keeps the original category pills unchanged. -->
+            <div class="hotspot-mobile-controls" aria-label="Hotspot Radar mobile filters">
+              <button type="button" class="hotspot-mobile-action active" data-mobile-action="all">
+                <span aria-hidden="true">All</span>
+              </button>
+              <button type="button" class="hotspot-mobile-action" data-mobile-action="safety">
+                <span aria-hidden="true">🛡 Safety</span>
+              </button>
+              <button type="button" class="hotspot-mobile-action" data-mobile-action="stay">
+                <span aria-hidden="true">🏨 Hotel</span>
+              </button>
+              <button type="button" class="hotspot-mobile-action" data-mobile-action="more" aria-haspopup="dialog" aria-controls="hotspot-mobile-more-modal">
+                <span aria-hidden="true">⋯ More</span>
+              </button>
+            </div>
+          </div>
+          <!-- Hidden map container — kept in DOM so initMap() can still run for geofencing -->
+          <div class="hotspot-map-container" style="display:none;position:absolute;pointer-events:none;" aria-hidden="true">
+            <div id="hotspot-map"></div>
+          </div>
+          <!-- Full-width image-browse directory -->
+          <div class="hotspots-directory-list" id="hotspots-directory-list"></div>
+        </section>
+
+        <!-- Profile Tab -->
+        <section id="tab-profile" class="tab-content-panel">
+          <div id="profile-container"></div>
+        </section>
+
+        <!-- Driver Reviews Tab (Driver Only) -->
+        <section id="tab-driver-reviews" class="tab-content-panel">
+          <div id="driver-reviews-container"></div>
+        </section>
+
+        <!-- TAB 5: Ledger -->
+        <section id="tab-ledger" class="tab-content-panel">
+          <div id="guide-ledger-container"></div>
+        </section>
+
+      <!-- TAB 6: Driver QR (Guide Only) -->
+      <section id="tab-guide-qr" class="tab-content-panel">
+
+        <!-- Driver live notification toast (appears when passenger submits price pulse) -->
+        <div id="driver-live-notification-toast" class="driver-notification-toast hidden"></div>
+
+        <div class="guide-qr-wrapper">
+          <div class="guide-badge-header">
+            <img id="driver-profile-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150" alt="Driver Photo" class="guide-badge-avatar">
+            <div>
+              <div class="guide-badge-name" id="driver-card-name">Mehul Bhai Solanki</div>
+              <div class="guide-badge-lic" id="driver-card-lic">GJ-06-AU-7892 • Green CNG Auto-Rickshaw</div>
+            </div>
+          </div>
+          <p style="font-size:13px;color:var(--slate-600);margin-bottom:14px;text-align:center;">
+            Show this QR to your passenger. It refreshes every 15s to prevent screenshot fraud.
+          </p>
+          <div class="qr-canvas-box"><div id="guide-qr-canvas"></div></div>
+          <div class="qr-countdown-pill" id="qr-countdown-badge">Token refreshes in 15s</div>
+          <p style="margin-top:12px;font-size:11px;color:var(--slate-500);text-align:center;">
+            <i class="fas fa-lock"></i> GPS + timestamp + RTO badge encrypted into token.
+          </p>
+        </div>
+
+        <div style="margin-top:20px;">
+          <h4 style="font-size:14px;font-weight:800;margin-bottom:10px;"><i class="fas fa-list-check"></i> My Passenger Encounter Ledger</h4>
+          <div id="guide-self-ledger" class="timeline-list"></div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Mobile Bottom Nav -->
+    <nav class="app-bottom-nav">
+      <!-- Passenger Nav Items -->
+      <button type="button" class="nav-tab-btn traveler-only" data-tab="radar"><i class="fas fa-map-location-dot"></i><span>Radar</span></button>
+      <button type="button" class="nav-tab-btn traveler-only active" data-tab="transit"><i class="fas fa-route"></i><span>Transit</span></button>
+      <button type="button" class="nav-tab-btn traveler-only sos-btn" onclick="veridaApp && veridaApp.triggerSosFlow()"><div class="sos-inner">SOS</div></button>
+      <button type="button" class="nav-tab-btn traveler-only" data-tab="handshake"><i class="fas fa-shield-halved"></i><span>Verify</span></button>
+      <button type="button" class="nav-tab-btn traveler-only" data-tab="ledger"><i class="fas fa-book-bookmark"></i><span>Ledger</span></button>
+
+      <!-- Driver Nav Items -->
+      <button type="button" class="nav-tab-btn guide-only" data-tab="guide-qr"><i class="fas fa-qrcode"></i><span>QR</span></button>
+      <button type="button" class="nav-tab-btn guide-only active" data-tab="transit"><i class="fas fa-route"></i><span>Transit</span></button>
+      <button type="button" class="nav-tab-btn guide-only" data-tab="driver-reviews"><i class="fas fa-comment-dots"></i><span>Reviews</span></button>
+      <button type="button" class="nav-tab-btn guide-only" data-tab="ledger"><i class="fas fa-book-bookmark"></i><span>Ledger</span></button>
+    </nav>
+
+  </div><!-- /#single-app-shell -->
+
+  <!-- ===== DUAL-SCREEN STAGE LAYOUT (Passenger Phone + Driver Phone side-by-side) ===== -->
+  <div class="dual-stage-layout" id="dual-stage-container">
+
+    <!-- LEFT: Passenger Phone — Full interactive app inside -->
+    <div class="dual-phone-column">
+      <div class="dual-phone-header">
+        <i class="fas fa-user"></i>&nbsp; PASSENGER DEVICE &nbsp;·&nbsp;
+        <span id="dual-passenger-name">Devanshi Sharma</span>
+      </div>
+      <!-- Full embedded app for passenger side in dual mode -->
+      <div class="dual-phone-content" id="dual-passenger-panel">
+
+        <!-- Route & Transit Card -->
+        <div style="background:#f0fdf4;border:1.5px solid #bbf7d0;border-radius:14px;padding:14px;">
+          <div style="font-weight:800;font-size:14px;margin-bottom:8px;"><i class="fas fa-route" style="color:#059669;"></i> Route: Station → Laxmi Vilas</div>
+          <div style="font-size:12px;color:#065f46;">Last 3 Passengers Paid: ₹100 • ₹90 • ₹100</div>
+          <div style="font-size:11px;color:#475569;margin-top:4px;">Fair Median: ₹80–₹100</div>
+        </div>
+
+        <!-- Handshake Button -->
+        <button type="button" class="btn btn-primary btn-block btn-lg" onclick="veridaApp.executeHandshakeFlow()">
+          <i class="fas fa-qrcode"></i> Scan Driver QR (Handshake)
+        </button>
+
+        <!-- Driver Verification -->
+        <button type="button" class="btn btn-outline btn-block" onclick="transitSafety && transitSafety.openDriverVerificationModal()">
+          <i class="fas fa-shield-check"></i> View Driver Safety Card & Emergency Dials
+        </button>
+
+        <!-- No App Flow -->
+        <button type="button" class="btn btn-outline btn-block" onclick="transitSafety && transitSafety.openZeroAppModal()">
+          <i class="fas fa-car-on"></i> Driver Has No App? (Plate Entry)
+        </button>
+
+        <!-- SOS -->
+        <button type="button" class="btn btn-danger btn-block" onclick="veridaApp.triggerSosFlow()">
+          <i class="fas fa-triangle-exclamation"></i> Generate Tourist Police Dossier (1363)
+        </button>
+
+        <!-- Live Pulse mini-strip -->
+        <div style="background:#0f172a;border-radius:10px;padding:8px 12px;font-size:11px;color:#34d399;">
+          <i class="fas fa-bolt"></i> <strong>Live Pulse:</strong> Station→Palace ₹100 (14m ago) • Alkapuri→Sayaji ₹60 (8m ago)
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Driver Phone — QR + Encounter Ledger -->
+    <div class="dual-phone-column">
+      <div class="dual-phone-header guide-header">
+        <i class="fas fa-taxi"></i>&nbsp; DRIVER DEVICE &nbsp;·&nbsp;
+        <span id="dual-driver-name">Mehul Bhai Solanki</span>
+      </div>
+      <div class="dual-phone-content">
+
+        <!-- Driver live notification toast (shown after passenger submits price) -->
+        <div id="driver-live-notification-toast-dual" class="driver-notification-toast hidden"></div>
+
+        <!-- Driver Profile Card -->
+        <div class="guide-qr-wrapper" style="padding:16px;">
+          <div class="guide-badge-header">
+            <img id="driver-avatar-dual" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150" alt="Driver" class="guide-badge-avatar">
+            <div>
+              <div class="guide-badge-name" id="driver-card-name-dual">Mehul Bhai Solanki</div>
+              <div class="guide-badge-lic" id="driver-card-lic-dual">GJ-06-AU-7892 • CNG Auto</div>
+            </div>
+          </div>
+
+          <!-- Rotating QR for driver side -->
+          <div class="qr-canvas-box"><div id="guide-qr-canvas-dual"></div></div>
+          <div class="qr-countdown-pill" id="qr-countdown-badge-dual">Token refreshes in 15s</div>
+          <p style="font-size:11px;color:var(--slate-500);text-align:center;margin-top:8px;">
+            Passenger scans this QR to verify and create Digital Footprint
+          </p>
+        </div>
+
+        <!-- Encounter Ledger for driver -->
+        <div>
+          <h4 style="font-size:13px;font-weight:800;margin-bottom:8px;"><i class="fas fa-list-check"></i> Passenger Encounter Log</h4>
+          <div id="guide-self-ledger-dual" class="timeline-list">
+            <!-- Pre-populated example entry -->
+            <div class="timeline-item">
+              <div class="timeline-dot verified"></div>
+              <div class="timeline-card">
+                <div class="timeline-card-header">
+                  <strong>Sophie Martin (Tourist)</strong>
+                  <span class="text-success" style="font-weight:700;">₹450</span>
+                </div>
+                <div class="presence-watermark"><i class="fas fa-shield-check"></i> Proximity Verified (&lt;10m)</div>
+                <p class="review-text">Laxmi Vilas Palace Heritage Tour</p>
+                <span class="token-mono">Hash: 0x98f4a1c7…</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Driver action buttons -->
+        <button type="button" class="btn btn-outline btn-block" onclick="authManager && authManager.openAuthModal('guide')">
+          <i class="fas fa-user-edit"></i> Edit Driver Profile & Plate
+        </button>
+
+      </div>
+    </div>
+
+  </div><!-- end dual-stage-layout -->
+
+
+  <!-- ========== MODALS ========== -->
+
+  <!-- AUTH / REGISTRATION MODAL (Passenger + Driver Sign-Up / Login) -->
+  <div id="auth-modal" class="modal-backdrop">
+    <div class="modal-card" style="max-width:520px;">
+      <button type="button" class="modal-close-btn" id="close-auth-modal-btn"><i class="fas fa-times"></i></button>
+
+      <div style="text-align:center;margin-bottom:20px;">
+        <div style="width:52px;height:52px;background:var(--primary-surface);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:24px;color:var(--primary);border:2px solid var(--primary-light);">
+          <i class="fas fa-shield-halved"></i>
+        </div>
+        <h2 style="font-size:20px;font-weight:800;">SafarSaarthi Identity Setup</h2>
+        <p style="font-size:12px;color:var(--slate-500);margin-top:4px;">Your profile is stored locally on this device. No account needed.</p>
+      </div>
+
+      <!-- Tab switcher -->
+      <div class="auth-tab-row">
+        <button type="button" class="auth-tab-btn active" data-tab="passenger">
+          <i class="fas fa-user-shield"></i> I'm a Passenger / Tourist
+        </button>
+        <button type="button" class="auth-tab-btn" data-tab="driver">
+          <i class="fas fa-taxi"></i> I'm a Driver / Guide
+        </button>
+      </div>
+
+      <!-- PASSENGER FORM -->
+      <div id="auth-panel-passenger">
+        <form id="passenger-auth-form" style="display:flex;flex-direction:column;gap:12px;margin-top:16px;">
+          <div class="auth-field-group">
+            <label class="auth-label"><i class="fas fa-envelope"></i> Email</label>
+            <input type="email" id="reg-passenger-email" class="auth-input" placeholder="you@example.com" required autocomplete="off">
+          </div>
+          <div class="auth-field-group">
+            <label class="auth-label"><i class="fas fa-lock"></i> Password</label>
+            <input type="password" id="reg-passenger-password" class="auth-input" placeholder="At least 6 characters" required autocomplete="off">
+          </div>
+          <div id="passenger-signup-extra-fields" style="display:flex;flex-direction:column;gap:12px;">
+            <div class="auth-field-group">
+              <label class="auth-label"><i class="fas fa-user"></i> Your Full Name</label>
+              <input type="text" id="reg-passenger-name" class="auth-input" placeholder="e.g. Devanshi Sharma">
+            </div>
+            <div class="auth-field-group">
+              <label class="auth-label"><i class="fas fa-phone"></i> Your Mobile Number</label>
+              <input type="tel" id="reg-passenger-phone" class="auth-input" placeholder="+91 98765 43210">
+            </div>
+            <div class="auth-field-group">
+              <label class="auth-label"><i class="fas fa-map-marker-alt"></i> Your Home City / Origin</label>
+              <input type="text" id="reg-passenger-origin" class="auth-input" placeholder="e.g. Vadodara, Gujarat">
+            </div>
+            <div class="auth-field-group">
+              <label class="auth-label"><i class="fas fa-phone-volume"></i> Emergency Contact (Name & Phone)</label>
+              <input type="text" id="reg-passenger-emergency" class="auth-input" placeholder="e.g. Mum (+91 98765 11223)">
+            </div>
+            <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:10px 12px;font-size:11px;color:#065f46;">
+              <i class="fas fa-shield-check"></i> Your profile helps pre-fill the Digital Footprint and the Tourist Police Evidence Dossier automatically.
+            </div>
+          </div>
+          <button type="submit" id="passenger-auth-submit-btn" class="btn btn-primary btn-block btn-lg">
+            <i class="fas fa-check-circle"></i> Create Account & Start
+          </button>
+          <button type="button" id="passenger-auth-mode-toggle" style="background:none;border:none;color:var(--primary);font-weight:700;font-size:12px;text-align:center;cursor:pointer;padding:4px;">
+            Already have an account? Sign in instead
+          </button>
+        </form>
+      </div>
+
+      <!-- DRIVER FORM -->
+      <div id="auth-panel-driver" class="hidden">
+        <form id="driver-auth-form" style="display:flex;flex-direction:column;gap:12px;margin-top:16px;">
+          <div class="auth-field-group">
+            <label class="auth-label"><i class="fas fa-envelope"></i> Email</label>
+            <input type="email" id="reg-driver-email" class="auth-input" placeholder="you@example.com" required autocomplete="off">
+          </div>
+          <div class="auth-field-group">
+            <label class="auth-label"><i class="fas fa-lock"></i> Password</label>
+            <input type="password" id="reg-driver-password" class="auth-input" placeholder="At least 6 characters" required autocomplete="off">
+          </div>
+          <div id="driver-signup-extra-fields" style="display:flex;flex-direction:column;gap:12px;">
+            <div class="auth-field-group">
+              <label class="auth-label"><i class="fas fa-user"></i> Driver Full Name</label>
+              <input type="text" id="reg-driver-name" class="auth-input" placeholder="e.g. Mehul Bhai Solanki">
+            </div>
+            <div class="auth-field-group">
+              <label class="auth-label"><i class="fas fa-phone"></i> Driver Mobile Number</label>
+              <input type="tel" id="reg-driver-phone" class="auth-input" placeholder="+91 94260 55321">
+            </div>
+            <div class="auth-field-group">
+              <label class="auth-label"><i class="fas fa-id-badge"></i> Vehicle Registration Number</label>
+              <input type="text" id="reg-driver-plate" class="auth-input" placeholder="e.g. GJ-06-AU-7892" style="text-transform:uppercase;font-family:var(--font-mono);font-weight:700;">
+            </div>
+            <div class="auth-field-group">
+              <label class="auth-label"><i class="fas fa-file-contract"></i> RTO Driving License Number</label>
+              <input type="text" id="reg-driver-lic" class="auth-input" placeholder="e.g. GJ-06-2018-009124">
+            </div>
+            <div class="auth-field-group">
+              <label class="auth-label"><i class="fas fa-file-contract"></i> Aadhar Card Number</label>
+              <input type="text" id="reg-adhar-no" class="auth-input" placeholder="e.g. 4150 4780 4150">
+            </div>
+            <div class="auth-field-group">
+              <label class="auth-label"><i class="fas fa-taxi"></i> Vehicle Type</label>
+              <select id="reg-driver-type" class="auth-input">
+                <option value="Green CNG Auto-Rickshaw">Green CNG Auto-Rickshaw (Vadodara)</option>
+                <option value="Yellow-Black Auto (Metered)">Yellow-Black Auto (Metered)</option>
+                <option value="AC Sedan Tourist Taxi">AC Sedan Tourist Taxi</option>
+                <option value="Innova Crysta (Tour)">Innova Crysta (Tour)</option>
+                <option value="Heritage Licensed Guide">Heritage Licensed Guide (Not Driver)</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;padding:10px 12px;font-size:11px;color:#1e40af;">
+              <i class="fas fa-info-circle"></i> Your vehicle plate & license are embedded in the rotating QR token. Passengers see this when they scan you.
+            </div>
+          </div>
+          <button type="submit" id="driver-auth-submit-btn" class="btn btn-primary btn-block btn-lg">
+            <i class="fas fa-qrcode"></i> Create Driver Account & Generate QR
+          </button>
+          <button type="button" id="driver-auth-mode-toggle" style="background:none;border:none;color:var(--primary);font-weight:700;font-size:12px;text-align:center;cursor:pointer;padding:4px;">
+            Already have an account? Sign in instead
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DRIVER SAFETY CARD MODAL -->
+  <div id="driver-safety-card-modal" class="modal-backdrop">
+    <div class="modal-card" style="max-width:520px;">
+      <button type="button" class="modal-close-btn" onclick="document.getElementById('driver-safety-card-modal').classList.remove('active');"><i class="fas fa-times"></i></button>
+      <div id="driver-safety-card-content"></div>
+    </div>
+  </div>
+
+  <!-- ZERO-APP DRIVER MODAL -->
+  <div id="zero-app-modal" class="modal-backdrop">
+    <div class="modal-card" style="max-width:480px;">
+      <button type="button" class="modal-close-btn" onclick="document.getElementById('zero-app-modal').classList.remove('active');"><i class="fas fa-times"></i></button>
+      <div id="zero-app-content"></div>
+    </div>
+  </div>
+
+  <!-- HANDSHAKE SUCCESS MODAL -->
+  <div id="handshake-success-modal" class="modal-backdrop">
+    <div class="modal-card">
+      <button type="button" class="modal-close-btn" onclick="document.getElementById('handshake-success-modal').classList.remove('active');"><i class="fas fa-times"></i></button>
+      <div id="handshake-success-content"></div>
+    </div>
+  </div>
+
+  <!-- 3-SEC PRICE PROMPT & DRIVER REVIEW MODAL -->
+  <div id="price-prompt-modal" class="modal-backdrop">
+    <div class="modal-card price-prompt-modal-card">
+      <button type="button" class="modal-close-btn" onclick="document.getElementById('price-prompt-modal').classList.remove('active');"><i class="fas fa-times"></i></button>
+      
+      <!-- 1. Price Pulse Header -->
+      <h3 style="font-size:16px;font-weight:800;color:var(--slate-900);margin:0 0 4px 0;padding-right:28px;" id="price-prompt-title">You reached Laxmi Vilas Palace (Old Palace Rd)! What did you pay?</h3>
+      <p style="font-size:12px;color:var(--slate-500);margin:0 0 14px 0;">3-second rate pulse → Protects future travelers on this route.</p>
+      
+      <div class="range-pills-selector" id="price-prompt-pills" style="display:none;"></div>
+      <div class="form-group" style="margin-bottom:14px;">
+        <label style="font-size:11px;font-weight:700;color:var(--slate-600);display:block;margin-bottom:6px;">Or type exact amount (₹):</label>
+        <input type="number" id="price-prompt-custom-amount" placeholder="e.g. 230" style="width:100%;padding:10px 14px;border:1.5px solid var(--slate-300);border-radius:var(--radius-md);font-size:15px;font-family:inherit;box-sizing:border-box;">
+      </div>
+
+      <!-- 2. Driver Profile Card (Matching Reference UI) -->
+      <div id="review-modal-driver-card" class="modal-driver-card" style="background:#ffffff;border:1px solid #e2e8f0;border-radius:16px;padding:14px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,0.04);">
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <div style="position:relative;flex-shrink:0;">
+            <img id="review-modal-driver-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150" alt="Mehul Bhai Solanki" style="width:54px;height:54px;border-radius:50%;object-fit:cover;border:2px solid #10b981;">
+            <span style="position:absolute;bottom:-2px;right:-2px;width:18px;height:18px;background:#059669;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;border:2px solid #fff;"><i class="fas fa-check"></i></span>
+          </div>
+          <div style="flex:1;min-width:0;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;flex-wrap:wrap;gap:4px;">
+              <h4 id="review-modal-driver-name" style="font-size:15px;font-weight:800;color:#0f172a;margin:0;">Mehul Bhai Solanki</h4>
+              <span style="background:#ecfdf5;color:#047857;font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;display:inline-flex;align-items:center;gap:4px;border:1px solid #a7f3d0;"><i class="fas fa-shield-alt"></i> 98% Trust Index</span>
+            </div>
+            <div style="font-size:11px;color:#475569;margin-bottom:2px;display:flex;align-items:center;gap:4px;">
+              <i class="fas fa-id-card"></i> <span>Official Partner • <strong id="review-modal-driver-lic">GJ-06-2018-009124</strong></span>
+            </div>
+            <div style="font-size:11px;color:#64748b;margin-bottom:6px;display:flex;align-items:center;gap:4px;">
+              <i class="fas fa-landmark"></i> <span>Vadodara RTO &amp; Police Tourist Syndicate</span>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:4px;">
+              <span style="background:#f1f5f9;color:#475569;font-size:10px;font-weight:600;padding:2px 6px;border-radius:4px;"><i class="fas fa-language"></i> English, Gujarati, Hindi</span>
+              <span style="background:#f1f5f9;color:#475569;font-size:10px;font-weight:600;padding:2px 6px;border-radius:4px;"><i class="fas fa-clock"></i> 5+ Years Exp</span>
+              <span style="background:#ecfdf5;color:#059669;font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;"><i class="fas fa-handshake"></i> 4 Verified Encounters</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Leave a Proof-of-Presence Review (Matching Reference UI) -->
+      <div style="background:#ffffff;border:1px solid #e2e8f0;border-radius:16px;padding:14px;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,0.04);">
+        <h4 style="font-size:14px;font-weight:800;color:#0f172a;margin:0 0 8px 0;display:flex;align-items:center;gap:6px;">
+          <i class="fas fa-pen-fancy"></i> Leave a Proof-of-Presence Review
+        </h4>
+        <div style="background:#ecfdf5;color:#059669;font-size:11px;font-weight:700;padding:4px 10px;border-radius:6px;display:inline-flex;align-items:center;gap:6px;margin-bottom:12px;border:1px solid #a7f3d0;">
+          <i class="fas fa-shield-check"></i> GPS Verified Presence Active
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+          <label style="font-size:12px;font-weight:700;color:#334155;">Your Rating:</label>
+          <div id="modal-review-star-picker" style="display:flex;gap:6px;">
+            <button type="button" class="modal-star-btn active" data-star="1" style="background:none;border:none;font-size:20px;color:#f59e0b;cursor:pointer;padding:0;"><i class="fas fa-star"></i></button>
+            <button type="button" class="modal-star-btn active" data-star="2" style="background:none;border:none;font-size:20px;color:#f59e0b;cursor:pointer;padding:0;"><i class="fas fa-star"></i></button>
+            <button type="button" class="modal-star-btn active" data-star="3" style="background:none;border:none;font-size:20px;color:#f59e0b;cursor:pointer;padding:0;"><i class="fas fa-star"></i></button>
+            <button type="button" class="modal-star-btn active" data-star="4" style="background:none;border:none;font-size:20px;color:#f59e0b;cursor:pointer;padding:0;"><i class="fas fa-star"></i></button>
+            <button type="button" class="modal-star-btn active" data-star="5" style="background:none;border:none;font-size:20px;color:#f59e0b;cursor:pointer;padding:0;"><i class="fas fa-star"></i></button>
+          </div>
+        </div>
+        <div class="form-group" style="margin-bottom:0;">
+          <textarea id="modal-review-comment" rows="3" placeholder="Share your experience..." style="width:100%;padding:10px 12px;border:1px solid #cbd5e1;border-radius:10px;font-size:13px;font-family:inherit;resize:vertical;box-sizing:border-box;outline:none;"></textarea>
+        </div>
+      </div>
+
+      <!-- 4. Submit Button -->
+      <button type="submit" class="btn btn-primary btn-block btn-lg" id="price-prompt-submit-btn" style="background:#059669;color:#ffffff;border:none;border-radius:10px;padding:12px;font-size:14px;font-weight:700;width:100%;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 12px rgba(5,150,105,0.25);">
+        <i class="fas fa-paper-plane"></i> Submit Presence-Verified Review
+      </button>
+    </div>
+  </div>
+
+  <!-- PRICE CAMERA OCR RESULT MODAL -->
+  <div id="price-result-modal" class="modal-backdrop">
+    <div class="modal-card">
+      <button type="button" class="modal-close-btn" onclick="document.getElementById('price-result-modal').classList.remove('active');"><i class="fas fa-times"></i></button>
+      <div id="price-result-content"></div>
+    </div>
+  </div>
+
+  <!-- SOS DOSSIER MODAL -->
+  <div id="sos-evidence-modal" class="modal-backdrop">
+    <div class="modal-card" style="max-width:520px;">
+      <button type="button"  class="modal-close-btn" onclick="document.getElementById('sos-evidence-modal').classList.remove('active');"><i class="fas fa-times"></i></button>
+      <div id="sos-dossier-content"></div>
+    </div>
+  </div>
+
+  <!-- SAFARSAARTHI AI ASSISTANT -->
+<button
+  id="verida-ai-trigger"
+  class="verida-ai-trigger"
+  type="button"
+  aria-label="Open SafarSaarthi AI Assistant"
+>
+  <span class="verida-ai-icon">
+  <img src="chat_box.jpeg" alt="SafarSaarthi AI">
+</span>
+
+  <span class="verida-ai-label">
+    <strong>SafarSaarthi AI</strong>
+    <small>Assistant</small>
+  </span>
+</button>
+
+  <!-- MOBILE HOTSPOT RADAR: secondary category sheet -->
+  <div id="hotspot-mobile-more-modal" class="modal-backdrop hotspot-mobile-more-modal" role="dialog" aria-modal="true" aria-labelledby="hotspot-mobile-more-title">
+    <div class="modal-card hotspot-mobile-more-sheet">
+      <button type="button" class="modal-close-btn" id="close-hotspot-mobile-more-btn" aria-label="Close categories">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="hotspot-mobile-more-header">
+        <div>
+          <h3 id="hotspot-mobile-more-title">Explore Categories</h3>
+          <p>Choose an existing Hotspot Radar category.</p>
+        </div>
+      </div>
+      <div class="hotspot-mobile-more-options">
+        <button type="button" class="hotspot-mobile-option" data-cat="scam">
+          <span class="hotspot-mobile-option-icon">🚨</span>
+          <span><strong>Tout Hotspots</strong><small>Scam and tout warning zones</small></span>
+        </button>
+        <button type="button" class="hotspot-mobile-option" data-cat="Heritage">
+          <span class="hotspot-mobile-option-icon">🏛️</span>
+          <span><strong>Heritage</strong><small>Heritage landmarks already in the directory</small></span>
+        </button>
+        <button type="button" class="hotspot-mobile-option" data-cat="Gardens">
+          <span class="hotspot-mobile-option-icon">🌳</span>
+          <span><strong>Nature & Lakes</strong><small>Gardens and nature locations</small></span>
+        </button>
+        <button type="button" class="hotspot-mobile-option" data-cat="Temples">
+          <span class="hotspot-mobile-option-icon">🕉️</span>
+          <span><strong>Temples</strong><small>Temple locations already in the directory</small></span>
+        </button>
+        <button type="button" class="hotspot-mobile-option" data-cat="Food">
+          <span class="hotspot-mobile-option-icon">🍲</span>
+          <span><strong>Food</strong><small>Food locations already in the directory</small></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOTEL SURROUNDING SAFETY MODAL -->
+  <div id="hotel-safety-modal" class="modal-backdrop">
+    <div class="modal-card" style="max-width:620px;max-height:92vh;overflow-y:auto;">
+      <button type="button" class="modal-close-btn" id="close-hotel-modal-btn"><i class="fas fa-times"></i></button>
+      <div id="hotel-safety-content"></div>
+    </div>
+  </div>
+
+  <!-- TRIP PREFERENCES ONBOARDING MODAL -->
+  <div id="trip-preferences-modal" class="modal-backdrop">
+    <div class="modal-card" style="max-width:540px;max-height:92vh;overflow-y:auto;">
+      <button type="button" class="modal-close-btn" id="close-pref-modal-btn"><i class="fas fa-times"></i></button>
+      <div style="text-align:center;margin-bottom:20px;">
+        <div style="width:52px;height:52px;background:var(--primary-surface);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:24px;color:var(--primary);border:2px solid var(--primary-light);"><i class="fas fa-map-location-dot"></i></div>
+        <h2 style="font-size:20px;font-weight:800;">Personalize Your Trip</h2>
+        <p style="font-size:12px;color:var(--slate-500);margin-top:4px;">Answer a few quick questions so SafarSaarthi can recommend the right places for your trip.</p>
+      </div>
+      <form id="trip-preferences-form">
+        <!-- Q1: Trip Type -->
+        <div style="margin-bottom:18px;">
+          <label style="font-size:13px;font-weight:700;color:var(--slate-700);display:block;margin-bottom:10px;"><i class="fas fa-suitcase"></i> What is this trip about?</label>
+          <div id="pref-type-grid" style="display:flex;flex-wrap:wrap;gap:8px;">
+            <button type="button" class="pref-chip-btn active" data-value="Family Trip">👨‍👩‍👧 Family Trip</button>
+            <button type="button" class="pref-chip-btn" data-value="Business Trip">💼 Business Trip</button>
+            <button type="button" class="pref-chip-btn" data-value="Solo Trip">🎒 Solo Trip</button>
+            <button type="button" class="pref-chip-btn" data-value="Couple Trip">❤️ Couple Trip</button>
+            <button type="button" class="pref-chip-btn" data-value="Friends Trip">👯 Friends Trip</button>
+            <button type="button" class="pref-chip-btn" data-value="Cultural / Heritage Trip">🏛️ Cultural / Heritage</button>
+            <button type="button" class="pref-chip-btn" data-value="Adventure / Nature Trip">🌿 Adventure / Nature</button>
+          </div>
+        </div>
+        <!-- Q2: Interests -->
+        <div style="margin-bottom:18px;">
+          <label style="font-size:13px;font-weight:700;color:var(--slate-700);display:block;margin-bottom:10px;"><i class="fas fa-heart"></i> What are you interested in? <span style="font-weight:400;font-size:11px;color:var(--slate-500);">(Select all that apply)</span></label>
+          <div id="pref-interests-grid" style="display:flex;flex-wrap:wrap;gap:8px;">
+            <button type="button" class="pref-interest-btn" data-value="Food">🍲 Food</button>
+            <button type="button" class="pref-interest-btn" data-value="Shopping">🛍️ Shopping</button>
+            <button type="button" class="pref-interest-btn" data-value="History &amp; Culture">🏛️ History &amp; Culture</button>
+            <button type="button" class="pref-interest-btn" data-value="Nature">🌳 Nature</button>
+            <button type="button" class="pref-interest-btn" data-value="Entertainment">🎭 Entertainment</button>
+            <button type="button" class="pref-interest-btn" data-value="Local Experiences">🤝 Local Experiences</button>
+          </div>
+        </div>
+        <!-- Q3: Children -->
+        <div style="margin-bottom:22px;">
+          <label style="font-size:13px;font-weight:700;color:var(--slate-700);display:block;margin-bottom:10px;"><i class="fas fa-child"></i> Are you travelling with children?</label>
+          <div style="display:flex;gap:10px;">
+            <button type="button" class="pref-child-btn" data-value="Yes" style="flex:1;justify-content:center;">✅ Yes</button>
+            <button type="button" class="pref-child-btn active" data-value="No" style="flex:1;justify-content:center;">❌ No</button>
+          </div>
+        </div>
+        <!-- Q4: Hotel / Accommodation -->
+        <div style="margin-bottom:22px;">
+          <label style="font-size:13px;font-weight:700;color:var(--slate-700);display:block;margin-bottom:10px;"><i class="fas fa-hotel"></i> Have you already booked a hotel/accommodation?</label>
+          <div class="pref-choice-row">
+            <button type="button" class="pref-hotel-btn active" data-value="No">❌ No</button>
+            <button type="button" class="pref-hotel-btn" data-value="Yes">✅ Yes</button>
+          </div>
+          <div id="pref-hotel-note" style="display:none;margin-top:10px;background:#f0f9ff;border:1px solid #bae6fd;border-radius:10px;padding:10px;font-size:11px;color:#075985;line-height:1.45;">
+            <strong>Next:</strong> after saving your trip preferences, SafarSaarthi will ask you to select the hotel where you are staying and open <strong>Check My Stay</strong>.
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-bottom:10px;">
+          <i class="fas fa-sparkles"></i> Save Preferences &amp; Explore
+        </button>
+        <button type="button" id="skip-pref-btn" class="btn btn-outline btn-block" style="font-size:13px;">
+          Skip for now — Show Default Hotspot Radar
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLIyjwbbLyOrGksgWO8KEZrB4rq6aQMds&libraries=places,geometry"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <!-- SESSION BOOT GUARD -->
+  <script>
+    (function () {
+      try {
+        const version = "2026-09-hotel-safety-v3";
+        const active = sessionStorage.getItem("verida_auth_session_active") === "true";
+        const role = sessionStorage.getItem("verida_auth_session_role");
+        const sessionVersion = sessionStorage.getItem("verida_session_version");
+
+        if (active && sessionVersion === version && (role === "passenger" || role === "driver")) {
+          const landing = document.getElementById("verida-landing-website");
+          const shell = document.getElementById("single-app-shell");
+          if (landing) {
+            landing.classList.add("hidden");
+            landing.style.display = "none";
+          }
+          if (shell) shell.style.display = "flex";
+        }
+      } catch (error) {
+        console.warn("[SafarSaarthi] Session boot guard skipped:", error);
+      }
+    })();
+  </script>
+
+  <script type="module" src="js/app.js"></script>
+
+  <!-- AUTHENTICATED SESSION RESTORATION -->
+  <script>
+    window.veridaLandingSignUp = function() {
+      const authModal = document.getElementById('auth-modal');
+      if (authModal) {
+        authModal.classList.add('active');
+        const passengerTab = document.querySelector('.auth-tab-btn[data-tab="passenger"]');
+        if (passengerTab) passengerTab.click();
+      }
+    };
+
+    window.veridaLandingSignIn = function() {
+      const authModal = document.getElementById('auth-modal');
+      if (authModal) {
+        authModal.classList.add('active');
+        const passengerTab = document.querySelector('.auth-tab-btn[data-tab="passenger"]');
+        if (passengerTab) passengerTab.click();
+      }
+    };
+  </script>
+
+<!-- =========================================================
+     SAFARSAARTHI AI ASSISTANT — BOTPRESS
+     ========================================================= -->
+<script src="https://cdn.botpress.cloud/webchat/v5.0/inject.js"></script>
+<script src="https://files.bpcontent.cloud/2026/09/05/10/20260905104400-XSCV419Z.js" defer></script>
+
+</body>
+</html>
